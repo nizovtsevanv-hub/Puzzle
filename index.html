@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water Cycle Sequence Lab</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero card">
+        <div>
+          <p class="eyebrow">Interactive science puzzle</p>
+          <h1>Water Cycle Sequence Lab</h1>
+          <p class="hero-copy">
+            Build the path a water droplet follows through Earth&apos;s water cycle.
+            Select a concept card, place it into the timeline, then check your sequence.
+          </p>
+        </div>
+        <div class="score-card" aria-label="Puzzle progress">
+          <span class="score-number" id="solvedCount">0</span>
+          <span class="score-label">of 5 steps placed</span>
+        </div>
+      </section>
+
+      <section class="learning-strip" aria-label="Learning goals">
+        <article class="mini-card">
+          <span class="mini-icon">1</span>
+          <h2>Sequence</h2>
+          <p>Order each water cycle process from start to finish.</p>
+        </article>
+        <article class="mini-card">
+          <span class="mini-icon">2</span>
+          <h2>Reason</h2>
+          <p>Use the clues on every card to decide where it belongs.</p>
+        </article>
+        <article class="mini-card">
+          <span class="mini-icon">3</span>
+          <h2>Review</h2>
+          <p>Check your work and learn from instant feedback.</p>
+        </article>
+      </section>
+
+      <section class="game-grid">
+        <div class="card puzzle-panel">
+          <div class="section-heading">
+            <p class="eyebrow">Puzzle board</p>
+            <h2>Place the water cycle steps</h2>
+          </div>
+
+          <ol class="timeline" id="timeline" aria-label="Water cycle answer slots"></ol>
+
+          <div class="controls" aria-label="Puzzle controls">
+            <button class="button primary" id="checkButton" type="button">Check sequence</button>
+            <button class="button secondary" id="hintButton" type="button">Get a hint</button>
+            <button class="button ghost" id="resetButton" type="button">Reset</button>
+          </div>
+
+          <p class="status" id="statusMessage" aria-live="polite">
+            Pick a card, then choose a numbered slot.
+          </p>
+        </div>
+
+        <aside class="card deck-panel">
+          <div class="section-heading">
+            <p class="eyebrow">Concept cards</p>
+            <h2>Available steps</h2>
+          </div>
+          <div class="deck" id="cardDeck" aria-label="Water cycle concept cards"></div>
+        </aside>
+      </section>
+
+      <section class="card fact-panel" aria-labelledby="factTitle">
+        <div>
+          <p class="eyebrow">Science note</p>
+          <h2 id="factTitle">Why the sequence matters</h2>
+        </div>
+        <p id="factText">
+          The water cycle is powered by the Sun and gravity. Each step moves water
+          between the atmosphere, land, living things, and bodies of water.
+        </p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
