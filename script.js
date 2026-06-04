@@ -108,6 +108,7 @@ const modeButtons = document.querySelectorAll(".mode-button");
 const fitButton = document.querySelector("#fitButton");
 const hintButton = document.querySelector("#hintButton");
 const resetButton = document.querySelector("#resetButton");
+const assemblyActions = document.querySelector(".assembly-actions");
 
 let activeId = components[0].id;
 let currentMode = "kit";
@@ -296,10 +297,16 @@ function slotMarkup(component, shapeMarkup, labelX, labelY, hotspotBox) {
 }
 
 function buildAssemblySvg() {
+  const label = currentMode === "final" ? "FINAL ASSEMBLY" : "BUILD / PUZZLE MODE";
+  const sub =
+    currentMode === "final"
+      ? "Completed fuel collector with every numbered component fitted into the final unit."
+      : "Match each dashed numbered region with the same-number bottom component.";
+
   return `
     ${svgDefs()}
-    <text x="38" y="45" class="svg-label">BUILD / PUZZLE MODE</text>
-    <text x="38" y="66" class="svg-sub">Match each dashed numbered region with the same-number bottom component.</text>
+    <text x="38" y="45" class="svg-label">${label}</text>
+    <text x="38" y="66" class="svg-sub">${sub}</text>
     ${slotMarkup(components[3], flangeShape, 116, 362, [100, 318, 680, 78])}
     ${slotMarkup(components[0], bodyShape, 190, 224, [86, 216, 690, 130])}
     ${slotMarkup(components[1], inletShape, 518, 103, [405, 80, 116, 196])}
@@ -412,6 +419,8 @@ function renderActiveCard() {
 }
 
 function updateModeText() {
+  document.body.dataset.mode = currentMode;
+  assemblyActions.hidden = currentMode !== "build";
   stageEyebrow.textContent = modeText[currentMode].eyebrow;
   stageTitle.textContent = modeText[currentMode].title;
   stageNote.textContent = modeText[currentMode].note;
