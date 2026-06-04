@@ -1,223 +1,171 @@
 const assemblyComponents = [
   {
-    id: "cap",
+    id: "collector-body",
     number: 1,
-    term: "Cap",
-    ipa: "/kæp/",
-    ru: "колпачок",
-    function: "Covers the upper visible part of the assembly.",
-    functionRu: "Закрывает верхнюю видимую часть сборки.",
-    fitRelation: "The cap goes into the collet.",
-    fitRelationRu: "Колпачок входит в цангу.",
-    exampleSentence: "This is a cap.",
-    exampleSentenceRu: "Это колпачок.",
-    assemblySentence: "Insert the cap into the collet.",
-    assemblySentenceRu: "Вставьте колпачок в цангу.",
+    term: "Collector Body",
+    ipa: "/kəˈlektə ˈbɒdi/",
+    ru: "корпус коллектора",
+    function: "Forms the main housing and internal flow chamber.",
+    functionRu: "Образует основной корпус и внутреннюю камеру потока.",
+    fitRelation: "The collector body receives all sleeves, rings, plug, flange, bolts, and washers.",
+    fitRelationRu: "Корпус коллектора принимает все втулки, кольца, заглушку, фланец, болты и шайбы.",
+    exampleSentence: "This is the collector body.",
+    exampleSentenceRu: "Это корпус коллектора.",
+    assemblySentence: "Place the collector body as the main assembly reference.",
+    assemblySentenceRu: "Используйте корпус коллектора как основной ориентир сборки.",
     sequenceStep: "First",
-    sequenceOrder: 1,
-    slotLabel: "Cap slot",
-    markerSize: "medium",
-    marker: { x: 26, y: 64 },
-    slot: { x: 22, y: 55, w: 12, h: 14 },
-    bottomItem: { x: 10, y: 88, w: 10, h: 8 }
+    slotLabel: "Collector body region",
+    markerSize: "large",
+    marker: { x: 815, y: 280 },
+    slot: { x: 235, y: 135, w: 500, h: 205 },
+    bottomItem: { x: 55, y: 560, w: 190, h: 90 }
   },
   {
-    id: "washer",
+    id: "inlet-sleeve",
     number: 2,
-    term: "Washer",
-    ipa: "/ˈwɒʃə/",
-    ru: "шайба",
-    function: "Distributes load and supports the cap or fastener.",
-    functionRu: "Распределяет нагрузку и поддерживает колпачок или крепёж.",
-    fitRelation: "The washer sits under the cap.",
-    fitRelationRu: "Шайба располагается под колпачком.",
-    exampleSentence: "This is a washer.",
-    exampleSentenceRu: "Это шайба.",
-    assemblySentence: "Place the washer under the cap.",
-    assemblySentenceRu: "Установите шайбу под колпачок.",
+    term: "Inlet Sleeve",
+    ipa: "/ˈɪnlet sliːv/",
+    ru: "входная втулка",
+    function: "Guides incoming fuel into the collector body.",
+    functionRu: "Направляет входящее топливо в корпус коллектора.",
+    fitRelation: "The inlet sleeve goes into the upper inlet port.",
+    fitRelationRu: "Входная втулка входит в верхний входной патрубок.",
+    exampleSentence: "This is an inlet sleeve.",
+    exampleSentenceRu: "Это входная втулка.",
+    assemblySentence: "Insert the inlet sleeve into the inlet port.",
+    assemblySentenceRu: "Вставьте входную втулку во входной патрубок.",
     sequenceStep: "Then",
-    sequenceOrder: 2,
-    slotLabel: "Washer slot",
-    markerSize: "small",
-    marker: { x: 34, y: 70 },
-    slot: { x: 30, y: 62, w: 12, h: 12 },
-    bottomItem: { x: 24, y: 88, w: 10, h: 8 }
+    slotLabel: "Inlet sleeve slot",
+    markerSize: "medium",
+    marker: { x: 820, y: 95 },
+    slot: { x: 440, y: 78, w: 96, h: 115 },
+    bottomItem: { x: 285, y: 525, w: 78, h: 80 }
   },
   {
-    id: "stud-bolt",
+    id: "outlet-sleeves",
     number: 3,
-    term: "Stud-bolt",
-    ipa: "/stʌd bəʊlt/",
-    ru: "болт-шпилька",
-    function: "Passes through the panel and locks the assembly.",
-    functionRu: "Проходит через панель и фиксирует сборку.",
-    fitRelation: "The stud-bolt passes through the panel.",
-    fitRelationRu: "Болт-шпилька проходит через панель.",
-    exampleSentence: "This is a stud-bolt.",
-    exampleSentenceRu: "Это болт-шпилька.",
-    assemblySentence: "Insert the stud-bolt through the panel.",
-    assemblySentenceRu: "Вставьте болт-шпильку через панель.",
+    term: "Outlet Sleeves (x4)",
+    ipa: "/ˈaʊtlet sliːvz/",
+    ru: "выходные втулки (x4)",
+    function: "Direct fuel out to four outlet lines.",
+    functionRu: "Направляют топливо к четырём выходным линиям.",
+    fitRelation: "The outlet sleeves fit into the four lower outlet ports.",
+    fitRelationRu: "Выходные втулки входят в четыре нижних выходных патрубка.",
+    exampleSentence: "These are outlet sleeves.",
+    exampleSentenceRu: "Это выходные втулки.",
+    assemblySentence: "Fit the outlet sleeves into the four outlet ports.",
+    assemblySentenceRu: "Установите выходные втулки в четыре выходных патрубка.",
     sequenceStep: "Next",
-    sequenceOrder: 3,
-    slotLabel: "Stud-bolt slot",
+    slotLabel: "Outlet sleeves slots",
     markerSize: "large",
-    marker: { x: 48, y: 54 },
-    slot: { x: 44, y: 38, w: 10, h: 30 },
-    bottomItem: { x: 38, y: 88, w: 12, h: 8 }
+    marker: { x: 680, y: 440 },
+    slot: { x: 295, y: 250, w: 300, h: 120 },
+    bottomItem: { x: 395, y: 525, w: 95, h: 115 }
   },
   {
-    id: "panel",
+    id: "mounting-flange",
     number: 4,
-    term: "Panel",
-    ipa: "/ˈpænəl/",
-    ru: "панель",
-    function: "Holds the fastener and provides the mounting surface.",
-    functionRu: "Удерживает крепёж и образует монтажную поверхность.",
-    fitRelation: "The panel has a hole for the fastener.",
-    fitRelationRu: "В панели есть отверстие для крепежа.",
-    exampleSentence: "This is a panel.",
-    exampleSentenceRu: "Это панель.",
-    assemblySentence: "Put the fastener through the panel.",
-    assemblySentenceRu: "Проведите крепёж через панель.",
+    term: "Mounting Flange",
+    ipa: "/ˈmaʊntɪŋ flændʒ/",
+    ru: "крепёжный фланец",
+    function: "Provides the mounting interface for the assembly.",
+    functionRu: "Обеспечивает монтажную поверхность сборки.",
+    fitRelation: "The mounting flange aligns with the collector body holes.",
+    fitRelationRu: "Крепёжный фланец совмещается с отверстиями корпуса коллектора.",
+    exampleSentence: "This is a mounting flange.",
+    exampleSentenceRu: "Это крепёжный фланец.",
+    assemblySentence: "Align the mounting flange with the collector body.",
+    assemblySentenceRu: "Совместите крепёжный фланец с корпусом коллектора.",
     sequenceStep: "Next",
-    sequenceOrder: 4,
-    slotLabel: "Panel slot",
-    markerSize: "large",
-    marker: { x: 62, y: 48 },
-    slot: { x: 55, y: 35, w: 28, h: 18 },
-    bottomItem: { x: 54, y: 88, w: 12, h: 8 }
+    slotLabel: "Mounting flange slot",
+    markerSize: "medium",
+    marker: { x: 455, y: 560 },
+    slot: { x: 535, y: 520, w: 90, h: 115 },
+    bottomItem: { x: 520, y: 520, w: 95, h: 118 }
   },
   {
-    id: "hole",
+    id: "sealing-rings",
     number: 5,
-    term: "Hole",
-    ipa: "/həʊl/",
-    ru: "отверстие",
-    function: "Receives the fastener.",
-    functionRu: "Принимает крепёжный элемент.",
-    fitRelation: "The fastener goes into the hole.",
-    fitRelationRu: "Крепёж входит в отверстие.",
-    exampleSentence: "There is a hole in the panel.",
-    exampleSentenceRu: "В панели есть отверстие.",
-    assemblySentence: "Align the fastener with the hole.",
-    assemblySentenceRu: "Совместите крепёж с отверстием.",
-    sequenceStep: "Next",
-    sequenceOrder: 5,
-    slotLabel: "Hole slot",
+    term: "Sealing Rings (x2)",
+    ipa: "/ˈsiːlɪŋ rɪŋz/",
+    ru: "уплотнительные кольца (x2)",
+    function: "Seal the interfaces and prevent fuel leakage.",
+    functionRu: "Уплотняют соединения и предотвращают утечку топлива.",
+    fitRelation: "The sealing rings sit in grooves around the sleeves.",
+    fitRelationRu: "Уплотнительные кольца располагаются в канавках вокруг втулок.",
+    exampleSentence: "These are sealing rings.",
+    exampleSentenceRu: "Это уплотнительные кольца.",
+    assemblySentence: "Place the sealing rings into the grooves.",
+    assemblySentenceRu: "Установите уплотнительные кольца в канавки.",
+    sequenceStep: "Then",
+    slotLabel: "Sealing rings slots",
     markerSize: "small",
-    marker: { x: 64, y: 58 },
-    slot: { x: 61, y: 54, w: 8, h: 8 },
-    bottomItem: { x: 68, y: 88, w: 9, h: 8 }
+    marker: { x: 625, y: 565 },
+    slot: { x: 620, y: 515, w: 60, h: 95 },
+    bottomItem: { x: 625, y: 530, w: 55, h: 80 }
   },
   {
-    id: "thread",
+    id: "service-port-plug",
     number: 6,
-    term: "Thread",
-    ipa: "/θred/",
-    ru: "резьба",
-    function: "Provides mechanical engagement for tightening.",
-    functionRu: "Обеспечивает механическое зацепление при затяжке.",
-    fitRelation: "The thread engages with the mating part.",
-    fitRelationRu: "Резьба входит в зацепление с сопряжённой деталью.",
-    exampleSentence: "The stud-bolt has a thread.",
-    exampleSentenceRu: "У болта-шпильки есть резьба.",
-    assemblySentence: "Check the thread before tightening.",
-    assemblySentenceRu: "Проверьте резьбу перед затяжкой.",
-    sequenceStep: "Check",
-    sequenceOrder: 6,
-    slotLabel: "Thread area",
+    term: "Service Port Plug",
+    ipa: "/ˈsɜːvɪs pɔːt plʌɡ/",
+    ru: "заглушка сервисного порта",
+    function: "Closes the service access point.",
+    functionRu: "Закрывает сервисное отверстие.",
+    fitRelation: "The service port plug threads into the service port.",
+    fitRelationRu: "Заглушка сервисного порта вворачивается в сервисный порт.",
+    exampleSentence: "This is a service port plug.",
+    exampleSentenceRu: "Это заглушка сервисного порта.",
+    assemblySentence: "Insert the service port plug into the service port.",
+    assemblySentenceRu: "Вставьте заглушку сервисного порта в сервисный порт.",
+    sequenceStep: "Then",
+    slotLabel: "Service port plug slot",
     markerSize: "medium",
-    marker: { x: 48, y: 48 },
-    slot: { x: 46, y: 42, w: 6, h: 18 },
-    bottomItem: { x: 80, y: 88, w: 9, h: 8 }
+    marker: { x: 120, y: 425 },
+    slot: { x: 42, y: 300, w: 130, h: 105 },
+    bottomItem: { x: 690, y: 515, w: 100, h: 110 }
   },
   {
-    id: "hex-recess",
+    id: "fastening-bolts",
     number: 7,
-    term: "Hex recess",
-    ipa: "/hex rɪˈses/",
-    ru: "шестигранное углубление",
-    function: "Receives the tool for tightening or removal.",
-    functionRu: "Принимает инструмент для затяжки или снятия.",
-    fitRelation: "The tool fits into the hex recess.",
-    fitRelationRu: "Инструмент входит в шестигранное углубление.",
-    exampleSentence: "There is a hex recess.",
-    exampleSentenceRu: "Есть шестигранное углубление.",
-    assemblySentence: "Insert the tool into the hex recess.",
-    assemblySentenceRu: "Вставьте инструмент в шестигранное углубление.",
-    sequenceStep: "Then",
-    sequenceOrder: 7,
-    slotLabel: "Hex recess area",
-    markerSize: "small",
-    marker: { x: 48, y: 28 },
-    slot: { x: 45, y: 24, w: 8, h: 8 },
-    bottomItem: { x: 16, y: 88, w: 9, h: 8 }
-  },
-  {
-    id: "retaining-cap",
-    number: 8,
-    term: "Retaining cap",
-    ipa: "/rɪˈteɪnɪŋ kæp/",
-    ru: "стопорный колпачок",
-    function: "Locks or protects the assembly interface.",
-    functionRu: "Фиксирует или защищает зону сопряжения сборки.",
-    fitRelation: "The retaining cap closes the assembly.",
-    fitRelationRu: "Стопорный колпачок закрывает сборку.",
-    exampleSentence: "This is a retaining cap.",
-    exampleSentenceRu: "Это стопорный колпачок.",
-    assemblySentence: "Insert the retaining cap.",
-    assemblySentenceRu: "Вставьте стопорный колпачок.",
+    term: "Fastening Bolts (x2)",
+    ipa: "/ˈfɑːsənɪŋ bəʊlts/",
+    ru: "крепёжные болты (x2)",
+    function: "Clamp the collector to its mounting interface.",
+    functionRu: "Прижимают коллектор к монтажной поверхности.",
+    fitRelation: "The fastening bolts pass through the washers and flange holes.",
+    fitRelationRu: "Крепёжные болты проходят через шайбы и отверстия фланца.",
+    exampleSentence: "These are fastening bolts.",
+    exampleSentenceRu: "Это крепёжные болты.",
+    assemblySentence: "Insert the fastening bolts through the flange holes.",
+    assemblySentenceRu: "Вставьте крепёжные болты через отверстия фланца.",
     sequenceStep: "Finally",
-    sequenceOrder: 8,
-    slotLabel: "Retaining cap slot",
+    slotLabel: "Fastening bolts slots",
     markerSize: "medium",
-    marker: { x: 52, y: 72 },
-    slot: { x: 48, y: 66, w: 10, h: 12 },
-    bottomItem: { x: 44, y: 88, w: 10, h: 8 }
+    marker: { x: 715, y: 560 },
+    slot: { x: 715, y: 520, w: 55, h: 118 },
+    bottomItem: { x: 805, y: 520, w: 70, h: 110 }
   },
   {
-    id: "retaining-washer",
-    number: 9,
-    term: "Retaining washer",
-    ipa: "/rɪˈteɪnɪŋ ˈwɒʃə/",
-    ru: "стопорная шайба",
-    function: "Holds the cap and supports the fastening interface.",
-    functionRu: "Удерживает колпачок и поддерживает зону крепления.",
-    fitRelation: "The retaining washer holds the cap.",
-    fitRelationRu: "Стопорная шайба удерживает колпачок.",
-    exampleSentence: "This is a retaining washer.",
-    exampleSentenceRu: "Это стопорная шайба.",
-    assemblySentence: "Place the retaining washer.",
-    assemblySentenceRu: "Установите стопорную шайбу.",
-    sequenceStep: "Then",
-    sequenceOrder: 9,
-    slotLabel: "Retaining washer slot",
-    markerSize: "medium",
-    marker: { x: 56, y: 72 },
-    slot: { x: 53, y: 66, w: 10, h: 12 },
-    bottomItem: { x: 58, y: 88, w: 10, h: 8 }
-  },
-  {
-    id: "section-view",
-    number: 10,
-    term: "Section view",
-    ipa: "/ˈsekʃən vjuː/",
-    ru: "вид в разрезе",
-    function: "Shows the internal fit of the parts.",
-    functionRu: "Показывает внутреннее сопряжение деталей.",
-    fitRelation: "The section view shows how the parts fit together.",
-    fitRelationRu: "Вид в разрезе показывает, как детали соединяются.",
-    exampleSentence: "This is a section view.",
-    exampleSentenceRu: "Это вид в разрезе.",
-    assemblySentence: "Use the section view to check the fit.",
-    assemblySentenceRu: "Используйте вид в разрезе, чтобы проверить сопряжение.",
-    sequenceStep: "Check",
-    sequenceOrder: 10,
-    slotLabel: "Section view area",
-    markerSize: "medium",
-    marker: { x: 38, y: 44 },
-    slot: { x: 34, y: 36, w: 12, h: 16 },
-    bottomItem: { x: 90, y: 88, w: 9, h: 8 }
+    id: "washers",
+    number: 8,
+    term: "Washers (x2)",
+    ipa: "/ˈwɒʃəz/",
+    ru: "шайбы (x2)",
+    function: "Distribute bolt load and protect the mounting surface.",
+    functionRu: "Распределяют нагрузку от болтов и защищают монтажную поверхность.",
+    fitRelation: "The washers sit under the bolt heads.",
+    fitRelationRu: "Шайбы располагаются под головками болтов.",
+    exampleSentence: "These are washers.",
+    exampleSentenceRu: "Это шайбы.",
+    assemblySentence: "Place the washers under the bolt heads.",
+    assemblySentenceRu: "Установите шайбы под головки болтов.",
+    sequenceStep: "Finally",
+    slotLabel: "Washers slots",
+    markerSize: "small",
+    marker: { x: 835, y: 560 },
+    slot: { x: 870, y: 540, w: 65, h: 80 },
+    bottomItem: { x: 890, y: 535, w: 65, h: 70 }
   }
 ];
 
@@ -226,50 +174,52 @@ const assemblySequence = [
     id: "step-first",
     label: "First",
     ru: "Сначала",
-    sentence: "Insert the cap into the collet.",
-    sentenceRu: "Вставьте колпачок в цангу.",
-    componentIds: ["cap"],
-    focusRelation: "cap → collet"
+    sentence: "Identify the collector body as the main housing.",
+    sentenceRu: "Определите корпус коллектора как основной корпус.",
+    componentIds: ["collector-body"],
+    focusRelation: "body → reference"
   },
   {
-    id: "step-then",
+    id: "step-inlet",
     label: "Then",
     ru: "Затем",
-    sentence: "Place the washer under the cap.",
-    sentenceRu: "Установите шайбу под колпачок.",
-    componentIds: ["washer", "cap"],
-    focusRelation: "washer → under cap"
+    sentence: "Insert the inlet sleeve into the inlet port.",
+    sentenceRu: "Вставьте входную втулку во входной патрубок.",
+    componentIds: ["inlet-sleeve", "collector-body"],
+    focusRelation: "inlet sleeve → inlet port"
   },
   {
-    id: "step-next",
+    id: "step-outlets",
     label: "Next",
     ru: "Далее",
-    sentence: "Insert the stud-bolt through the panel.",
-    sentenceRu: "Вставьте болт-шпильку через панель.",
-    componentIds: ["stud-bolt", "panel", "hole"],
-    focusRelation: "stud-bolt → through panel"
+    sentence: "Fit the outlet sleeves into the four outlet ports.",
+    sentenceRu: "Установите выходные втулки в четыре выходных патрубка.",
+    componentIds: ["outlet-sleeves", "collector-body"],
+    focusRelation: "outlet sleeves → ports"
   },
   {
-    id: "step-tighten",
+    id: "step-seal",
     label: "Then",
     ru: "Затем",
-    sentence: "Tighten the assembly.",
-    sentenceRu: "Затяните сборку.",
-    componentIds: ["thread", "hex-recess"],
-    focusRelation: "tool → hex recess"
+    sentence: "Place the sealing rings and close the service port.",
+    sentenceRu: "Установите уплотнительные кольца и закройте сервисный порт.",
+    componentIds: ["sealing-rings", "service-port-plug"],
+    focusRelation: "rings + plug → sealed interface"
   },
   {
     id: "step-final",
     label: "Finally",
     ru: "Наконец",
-    sentence: "The assembly is complete.",
-    sentenceRu: "Сборка завершена.",
-    componentIds: ["cap", "washer", "stud-bolt", "panel", "hole"],
-    focusRelation: "completed assembly"
+    sentence: "Insert the fastening bolts and washers.",
+    sentenceRu: "Установите крепёжные болты и шайбы.",
+    componentIds: ["mounting-flange", "fastening-bolts", "washers"],
+    focusRelation: "bolts + washers → mounted assembly"
   }
 ];
 
-const svg = document.querySelector("#assemblySvg");
+const overlay = document.querySelector("#assemblyOverlay");
+const sourceImage = document.querySelector("#assemblyImage");
+const missingImage = document.querySelector("#missingImage");
 const componentStrip = document.querySelector("#componentStrip");
 const progressCount = document.querySelector("#progressCount");
 const progressLabel = document.querySelector("#progressLabel");
@@ -298,9 +248,7 @@ const hintButton = document.querySelector("#hintButton");
 const resetButton = document.querySelector("#resetButton");
 const assemblyActions = document.querySelector(".assembly-actions");
 
-const VIEWBOX = { width: 920, height: 520 };
 const componentsById = new Map(assemblyComponents.map((component) => [component.id, component]));
-
 let activeComponentId = assemblyComponents[0].id;
 let activeStepId = assemblySequence[0].id;
 let currentMode = "kit";
@@ -312,48 +260,37 @@ let speechTurn = 0;
 const modeText = {
   kit: {
     eyebrow: "Full kit / full set",
-    title: "Component kit overview",
-    note: "All bottom cards, labels, pronunciations, and relations are generated from the model."
+    title: "Original PNG component kit",
+    note: "The PNG is the master visual; markers and click zones sit above it."
   },
   build: {
     eyebrow: "Build / puzzle mode",
-    title: "Numbered assembly outline",
-    note: "Every dashed slot uses the same number and id as its bottom component card."
+    title: "Overlay puzzle slots",
+    note: "Dashed slots and transparent click zones are layered over the original image."
   },
   final: {
     eyebrow: "Final assembly",
-    title: "Completed fastener interface",
-    note: "All required components are activated and the filled puzzle is visible."
+    title: "Completed fuel collector",
+    note: "The original full assembly remains visible with every overlay region activated."
   }
 };
 
+sourceImage.addEventListener("error", () => {
+  missingImage.hidden = false;
+});
+
+sourceImage.addEventListener("load", () => {
+  missingImage.hidden = sourceImage.naturalWidth > 0;
+});
+
+function updateImageGuard() {
+  if (sourceImage.complete) {
+    missingImage.hidden = sourceImage.naturalWidth > 0;
+  }
+}
+
 function byId(componentId) {
   return componentsById.get(componentId);
-}
-
-function x(value) {
-  return (value / 100) * VIEWBOX.width;
-}
-
-function y(value) {
-  return (value / 100) * VIEWBOX.height;
-}
-
-function componentRect(component, source = "slot") {
-  const box = component[source];
-  return {
-    x: x(box.x),
-    y: y(box.y),
-    w: x(box.w),
-    h: y(box.h)
-  };
-}
-
-function markerPoint(component) {
-  return {
-    x: x(component.marker.x),
-    y: y(component.marker.y)
-  };
 }
 
 function markerRadius(component) {
@@ -387,169 +324,59 @@ function speakBritish(text) {
   window.speechSynthesis.speak(utterance);
 }
 
-function svgDefs() {
-  return `
-    <defs>
-      <linearGradient id="fuchsiaGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#cfabc5" />
-        <stop offset="18%" stop-color="#9d668f" />
-        <stop offset="58%" stop-color="#7d496f" />
-        <stop offset="100%" stop-color="#4e2b49" />
-      </linearGradient>
-      <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#ffffff" />
-        <stop offset="20%" stop-color="#eeeae3" />
-        <stop offset="42%" stop-color="#aeb6ba" />
-        <stop offset="58%" stop-color="#f8f5ee" />
-        <stop offset="78%" stop-color="#98a1a6" />
-        <stop offset="100%" stop-color="#626a70" />
-      </linearGradient>
-      <linearGradient id="graphiteGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#8f8f96" />
-        <stop offset="22%" stop-color="#565963" />
-        <stop offset="50%" stop-color="#777982" />
-        <stop offset="80%" stop-color="#383b43" />
-        <stop offset="100%" stop-color="#252932" />
-      </linearGradient>
-      <linearGradient id="badgeGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#b989ab" />
-        <stop offset="100%" stop-color="#5d3457" />
-      </linearGradient>
-    </defs>
-  `;
-}
-
 function numberBadge(component, cx, cy) {
   const radius = markerRadius(component);
   return `
     <g class="svg-number-badge">
-      <circle cx="${cx}" cy="${cy}" r="${radius}" fill="url(#badgeGradient)" stroke="rgba(255,255,255,.62)" stroke-width="1.2" />
+      <circle cx="${cx}" cy="${cy}" r="${radius}" fill="rgba(93,52,87,.92)" stroke="rgba(255,255,255,.76)" stroke-width="1.3" />
       <circle cx="${cx - radius * 0.28}" cy="${cy - radius * 0.34}" r="${radius * 0.28}" fill="rgba(255,255,255,.34)" />
-      <text x="${cx}" y="${cy + 5}" text-anchor="middle" fill="#fffdf9" font-size="${radius * 0.85}" font-weight="900">${component.number}</text>
+      <text x="${cx}" y="${cy + 5}" text-anchor="middle" fill="#fffdf9" font-size="${radius * 0.82}" font-weight="900">${component.number}</text>
     </g>
   `;
 }
 
-function slotShape(component, className = "slot-shape") {
-  const box = componentRect(component);
-  if (component.id.includes("washer") || component.id === "hole") {
-    const radius = Math.min(box.w, box.h) / 2;
-    return `<ellipse cx="${box.x + box.w / 2}" cy="${box.y + box.h / 2}" rx="${radius}" ry="${radius * 0.72}" class="${className}" />`;
-  }
-
-  if (component.id === "hex-recess") {
-    const cx = box.x + box.w / 2;
-    const cy = box.y + box.h / 2;
-    const r = Math.min(box.w, box.h) / 2;
-    const points = Array.from({ length: 6 }, (_, index) => {
-      const angle = Math.PI / 6 + (Math.PI / 3) * index;
-      return `${cx + Math.cos(angle) * r},${cy + Math.sin(angle) * r}`;
-    }).join(" ");
-    return `<polygon points="${points}" class="${className}" />`;
-  }
-
-  return `<rect x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" rx="${Math.min(box.w, box.h) * 0.22}" class="${className}" />`;
+function rectMarkup(box, className) {
+  return `<rect x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" rx="14" class="${className}" />`;
 }
 
-function componentVisual(component, source = "slot") {
-  const box = componentRect(component, source);
-  const centerX = box.x + box.w / 2;
-  const centerY = box.y + box.h / 2;
-  const shine = `<path d="M${box.x + box.w * 0.18} ${box.y + box.h * 0.24} H${box.x + box.w * 0.78}" stroke="rgba(255,255,255,.42)" stroke-width="2.4" stroke-linecap="round" />`;
-
-  if (component.id.includes("washer")) {
-    const radius = Math.min(box.w, box.h) * 0.44;
-    return `<g class="assembly-body"><ellipse cx="${centerX}" cy="${centerY}" rx="${radius}" ry="${radius * 0.72}" fill="none" stroke="url(#metalGradient)" stroke-width="${Math.max(7, radius * 0.38)}" /><ellipse cx="${centerX - radius * 0.32}" cy="${centerY - radius * 0.28}" rx="${radius * 0.16}" ry="${radius * 0.1}" fill="rgba(255,255,255,.55)" /></g>`;
-  }
-
-  if (component.id === "hole") {
-    return `<g><ellipse cx="${centerX}" cy="${centerY}" rx="${box.w * 0.42}" ry="${box.h * 0.42}" fill="#252932" stroke="url(#metalGradient)" stroke-width="4" /></g>`;
-  }
-
-  if (component.id === "hex-recess") {
-    return `<g>${slotShape(component, "graphite-fill")}<circle cx="${centerX}" cy="${centerY}" r="${Math.min(box.w, box.h) * 0.16}" fill="#171a20" /></g>`;
-  }
-
-  if (component.id === "stud-bolt" || component.id === "thread") {
-    const lines = Array.from({ length: 7 }, (_, index) => {
-      const yy = box.y + box.h * (0.16 + index * 0.1);
-      return `<path d="M${box.x + box.w * 0.18} ${yy} H${box.x + box.w * 0.82}" stroke="rgba(93,52,87,.42)" stroke-width="1.6" />`;
-    }).join("");
-    return `<g class="assembly-body"><rect x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" rx="${box.w * 0.34}" class="metal" />${shine}${lines}</g>`;
-  }
-
-  if (component.id === "panel" || component.id === "section-view") {
-    const fill = component.id === "section-view" ? "rgba(255,253,248,.58)" : "url(#metalGradient)";
-    return `<g class="assembly-body"><rect x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" rx="10" fill="${fill}" stroke="rgba(36,36,40,.34)" /><ellipse cx="${centerX}" cy="${centerY}" rx="${box.w * 0.13}" ry="${box.h * 0.22}" fill="#252932" opacity=".82" />${shine}<path d="M${box.x + box.w * 0.12} ${box.y + box.h * 0.82} H${box.x + box.w * 0.88}" stroke="rgba(141,85,125,.5)" stroke-width="2.5" /></g>`;
-  }
-
-  const fillClass = component.id.includes("cap") ? "fuchsia-fill" : "metal";
-  return `<g class="assembly-body"><rect x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" rx="${Math.min(box.w, box.h) * 0.35}" class="${fillClass}" />${shine}</g>`;
-}
-
-function renderSlot(component) {
+function renderOverlayComponent(component) {
   const isActive = activeComponentId === component.id;
   const isRelated = relatedComponentIds.has(component.id);
-  const isFilled = currentMode === "final" || currentMode === "kit" || activatedComponents.has(component.id);
-  const marker = markerPoint(component);
+  const isActivated = currentMode === "final" || activatedComponents.has(component.id);
+  const box = currentMode === "kit" ? component.bottomItem : component.slot;
+  const marker = currentMode === "kit"
+    ? { x: box.x + box.w / 2, y: box.y - 16 }
+    : component.marker;
+  const shapeClass = currentMode === "kit" ? "kit-shape" : "slot-shape";
   return `
-    <g class="slot-hotspot ${isActive ? "is-active" : ""} ${isRelated ? "is-related" : ""} ${isFilled ? "is-fitted" : ""}" data-id="${component.id}" tabindex="0" role="button" aria-label="Slot ${component.number}: ${component.slotLabel}">
-      <g class="slot-outline">${slotShape(component)}</g>
-      <g class="slot-fill ${isFilled ? "is-visible" : ""}">${componentVisual(component)}</g>
+    <g class="${currentMode === "kit" ? "kit-item" : "slot-hotspot"} ${isActive ? "is-active" : ""} ${isRelated ? "is-related" : ""} ${isActivated ? "is-fitted" : ""}" data-id="${component.id}" tabindex="0" role="button" aria-label="${component.number}: ${component.slotLabel}">
+      ${rectMarkup(box, shapeClass)}
       ${numberBadge(component, marker.x, marker.y)}
+      <rect x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" rx="14" fill="transparent" />
     </g>
   `;
 }
 
 function renderCallout(component) {
-  const box = componentRect(component);
-  const marker = markerPoint(component);
+  const box = component.slot;
+  const marker = component.marker;
   return `<path class="callout-line" d="M${marker.x} ${marker.y} L${box.x + box.w / 2} ${box.y + box.h / 2}" />`;
 }
 
-function renderAssemblySvg() {
-  const label = currentMode === "final" ? "FINAL ASSEMBLY" : "BUILD / PUZZLE MODE";
-  const sub = currentMode === "final"
-    ? "The completed filled puzzle is generated from the component model."
-    : "Dashed zones use each component slot coordinate from the model.";
+function renderOverlay() {
+  const label = currentMode === "final" ? "FINAL ASSEMBLY" : currentMode === "kit" ? "FULL KIT / FULL SET" : "BUILD / PUZZLE MODE";
+  const sub = missingImage.hidden
+    ? "Original PNG is the master visual; overlay markers are interactive."
+    : "Original PNG asset is missing; overlay support is ready but the source file must be added.";
 
-  return `
-    ${svgDefs()}
-    <text x="38" y="45" class="svg-label">${label}</text>
-    <text x="38" y="66" class="svg-sub">${sub}</text>
-    ${assemblyComponents.map(renderCallout).join("")}
-    ${assemblyComponents.map(renderSlot).join("")}
+  overlay.innerHTML = `
+    <text x="30" y="34" class="svg-label">${label}</text>
+    <text x="30" y="55" class="svg-sub">${sub}</text>
+    ${currentMode === "kit" ? "" : assemblyComponents.map(renderCallout).join("")}
+    ${assemblyComponents.map(renderOverlayComponent).join("")}
   `;
-}
 
-function renderKitItem(component) {
-  const box = componentRect(component, "bottomItem");
-  const visual = componentVisual(component, "bottomItem");
-  return `
-    <g class="kit-item ${activeComponentId === component.id ? "is-active" : ""} ${relatedComponentIds.has(component.id) ? "is-related" : ""}" data-id="${component.id}" tabindex="0" role="button" aria-label="Component ${component.number}: ${component.term}">
-      ${visual}
-      ${numberBadge(component, box.x + box.w / 2, box.y - 10)}
-      <text x="${box.x + box.w / 2}" y="${box.y + box.h + 18}" text-anchor="middle" class="kit-label">${component.term}</text>
-      <text x="${box.x + box.w / 2}" y="${box.y + box.h + 34}" text-anchor="middle" class="kit-sub">${component.ipa}</text>
-      <rect x="${box.x - 10}" y="${box.y - 28}" width="${box.w + 20}" height="${box.h + 56}" fill="transparent" />
-    </g>
-  `;
-}
-
-function renderKitSvg() {
-  return `
-    ${svgDefs()}
-    <text x="38" y="45" class="svg-label">FULL KIT / FULL SET</text>
-    <text x="38" y="66" class="svg-sub">Isolated components are positioned from each model bottomItem coordinate.</text>
-    <path d="M120 398 C240 342, 360 336, 460 286 C570 230, 696 210, 820 242" fill="none" stroke="rgba(93,52,87,.16)" stroke-width="24" stroke-linecap="round" />
-    ${assemblyComponents.map(renderKitItem).join("")}
-  `;
-}
-
-function renderSvg() {
-  svg.className = `assembly-svg mode-${currentMode}`;
-  svg.innerHTML = currentMode === "kit" ? renderKitSvg() : renderAssemblySvg();
-  svg.querySelectorAll("[data-id]").forEach((element) => {
+  overlay.querySelectorAll("[data-id]").forEach((element) => {
     element.addEventListener("click", () => selectComponent(element.dataset.id, { source: currentMode === "kit" ? "bottom" : "slot" }));
     element.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
@@ -563,8 +390,6 @@ function renderSvg() {
 function renderStrip() {
   componentStrip.innerHTML = assemblyComponents
     .map((component) => {
-      const miniBox = componentRect(component, "bottomItem");
-      const miniViewBox = `${miniBox.x - 24} ${miniBox.y - 42} ${miniBox.w + 48} ${miniBox.h + 84}`;
       const isActive = activeComponentId === component.id;
       const isRelated = relatedComponentIds.has(component.id);
       const isActivated = activatedComponents.has(component.id) || currentMode === "final";
@@ -575,7 +400,6 @@ function renderStrip() {
             <span class="part-number">${component.number}</span>
             <span>${component.slotLabel}</span>
           </span>
-          <span class="mini-visual"><svg viewBox="${miniViewBox}">${svgDefs()}${componentVisual(component, "bottomItem")}</svg></span>
           <strong>${component.term}</strong>
           <small>${component.ipa}</small>
           <small class="mini-ru">${component.ru}</small>
@@ -657,7 +481,7 @@ function updateProgress() {
 function render() {
   updateModeText();
   renderActiveCard();
-  renderSvg();
+  renderOverlay();
   renderStrip();
   renderSequence();
   updateProgress();
@@ -668,7 +492,7 @@ function maybeComplete() {
     return;
   }
   currentMode = "final";
-  setStatus(`The assembly is complete.<br><small>Сборка завершена.</small>`, "success");
+  setStatus("The assembly is complete.<br><small>Сборка завершена.</small>", "success");
 }
 
 function pulseActiveCard() {
@@ -706,7 +530,7 @@ function selectComponent(componentId, options = {}) {
   render();
 
   if (speak) {
-    speakBritish(component.term);
+    speakBritish(component.term.replace(/\s*\(x\d+\)/, ""));
   }
   pulseActiveCard();
 }
@@ -756,9 +580,9 @@ modeButtons.forEach((button) => {
       assemblyComponents.forEach((component) => activatedComponents.add(component.id));
       setStatus("The assembly is complete.<br><small>Сборка завершена.</small>", "success");
     } else if (currentMode === "kit") {
-      setStatus("Full kit view is generated from the component model.");
+      setStatus("Full kit view keeps the original PNG as the master layer.");
     } else {
-      setStatus("Build mode shows model-generated dashed slots.");
+      setStatus("Build mode adds transparent click zones and dashed slots above the PNG.");
     }
     render();
   });
@@ -776,3 +600,4 @@ activeCard.addEventListener("keydown", (event) => {
 });
 
 render();
+window.setTimeout(updateImageGuard, 250);

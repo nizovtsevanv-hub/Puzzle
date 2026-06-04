@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fastener Assembly Puzzle</title>
+    <title>Fuel Manifold Assembly Puzzle</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -11,13 +11,13 @@
       <header class="slide-header">
         <div>
           <p class="eyebrow">Technical English assembly trainer</p>
-          <h1>Fastener Interface Assembly</h1>
-          <p class="phonetic">/ˈfɑːsənə ˈɪntəfeɪs əˈsembli/</p>
-          <p class="translation">сборка крепёжного интерфейса</p>
+          <h1>Fuel Manifold / Fuel Collector</h1>
+          <p class="phonetic">/ˈfjuːəl ˈmænɪfəʊld/ /ˈfjuːəl kəˈlektə/</p>
+          <p class="translation">топливный коллектор</p>
         </div>
         <div class="progress-card" aria-label="Assembly progress">
           <span id="progressCount">0</span>
-          <small id="progressLabel">of 10 activated</small>
+          <small id="progressLabel">of 8 activated</small>
         </div>
       </header>
 
@@ -35,23 +35,32 @@
               <h2 id="stageTitle">Component kit overview</h2>
             </div>
             <p class="stage-note" id="stageNote">
-              Review the isolated numbered parts before building the fastener interface.
+              Review the original component kit before building the fuel collector.
             </p>
           </div>
 
-          <div class="diagram-frame">
+          <div class="diagram-frame image-frame">
+            <img
+              class="source-image"
+              id="assemblyImage"
+              src="assets/original-assembly.png"
+              alt="Original fuel manifold assembly and exploded component kit"
+            />
             <svg
-              class="assembly-svg"
-              id="assemblySvg"
-              viewBox="0 0 920 520"
+              class="assembly-overlay"
+              id="assemblyOverlay"
+              viewBox="0 0 1024 768"
               role="img"
               aria-labelledby="svgTitle svgDesc"
             >
-              <title id="svgTitle">Fastener interface assembly puzzle</title>
+              <title id="svgTitle">Fuel manifold assembly overlay</title>
               <desc id="svgDesc">
-                Numbered fastener components, dashed assembly slots, and final assembly views.
+                Interactive numbered puzzle slots layered over the original PNG.
               </desc>
             </svg>
+            <div class="missing-image" id="missingImage" hidden>
+              Original PNG missing: add <code>assets/original-assembly.png</code>.
+            </div>
           </div>
 
           <div class="assembly-actions">
@@ -75,9 +84,9 @@
           <div class="active-topline">
             <span class="active-number" id="activeNumber">1</span>
             <div>
-              <h2 id="activeTerm">Cap</h2>
-              <p class="ipa" id="activeIpa">/kæp/</p>
-              <p class="ru" id="activeRu">колпачок</p>
+              <h2 id="activeTerm">Collector Body</h2>
+              <p class="ipa" id="activeIpa">/kəˈlektə ˈbɒdi/</p>
+              <p class="ru" id="activeRu">корпус коллектора</p>
             </div>
           </div>
 
@@ -105,19 +114,19 @@
             <div class="relation-grid">
               <div>
                 <span>Part</span>
-                <strong id="relationPart">Cap</strong>
+                <strong id="relationPart">Collector Body</strong>
               </div>
               <div>
                 <span>Position</span>
-                <strong id="relationPosition">Cap slot</strong>
+                <strong id="relationPosition">Main body region</strong>
               </div>
               <div>
                 <span>Action</span>
-                <strong id="relationAction">First</strong>
+                <strong id="relationAction">receives</strong>
               </div>
               <div>
                 <span>Relation</span>
-                <strong id="relationText">The cap goes into the collet.</strong>
+                <strong id="relationText">Receives sleeves, rings, plug, flange, bolts, and washers.</strong>
               </div>
             </div>
           </section>
@@ -130,7 +139,7 @@
             <p class="eyebrow">Step-by-step sentence trainer</p>
             <h2 id="sequenceTitle">Assembly sequence</h2>
           </div>
-          <p id="sequenceSentence">First — Insert the cap into the collet.</p>
+          <p id="sequenceSentence">First — Identify the collector body as the main housing.</p>
         </div>
         <div class="sequence-steps" id="sequenceSteps"></div>
       </section>
