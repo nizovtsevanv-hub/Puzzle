@@ -563,6 +563,8 @@ function renderSvg() {
 function renderStrip() {
   componentStrip.innerHTML = assemblyComponents
     .map((component) => {
+      const miniBox = componentRect(component, "bottomItem");
+      const miniViewBox = `${miniBox.x - 24} ${miniBox.y - 42} ${miniBox.w + 48} ${miniBox.h + 84}`;
       const isActive = activeComponentId === component.id;
       const isRelated = relatedComponentIds.has(component.id);
       const isActivated = activatedComponents.has(component.id) || currentMode === "final";
@@ -573,7 +575,7 @@ function renderStrip() {
             <span class="part-number">${component.number}</span>
             <span>${component.slotLabel}</span>
           </span>
-          <span class="mini-visual"><svg viewBox="0 0 ${VIEWBOX.width} ${VIEWBOX.height}">${svgDefs()}${componentVisual(component, "bottomItem")}</svg></span>
+          <span class="mini-visual"><svg viewBox="${miniViewBox}">${svgDefs()}${componentVisual(component, "bottomItem")}</svg></span>
           <strong>${component.term}</strong>
           <small>${component.ipa}</small>
           <small class="mini-ru">${component.ru}</small>
