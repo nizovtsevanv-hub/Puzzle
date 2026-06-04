@@ -31,4 +31,6 @@ You can also serve the folder with any static file server, but no npm,
 2. Switch to **Build / puzzle mode**.
 3. Select a bottom component card and match it to the same-number dashed slot.
 4. Read the active right-side card for pronunciation, function, fit relation, and sentences.
-5. Use **Final assembly** to compare your build with the completed unit.
+5. Click the right-side card or a dashed slot to review the same linked component.
+6. Use the **Assembly sequence** trainer to practise First, Then, Next, and Finally sentences.
+7. Use **Final assembly** to compare your build with the completed unit.
