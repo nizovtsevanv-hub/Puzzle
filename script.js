@@ -608,18 +608,23 @@ function renderActiveCard() {
 function renderSequence() {
   const activeStep = assemblySequence.find((step) => step.id === activeStepId);
   if (activeStep) {
-    sequenceSentence.innerHTML = `${activeStep.label} — ${activeStep.sentence}<br><small>${activeStep.ru} — ${activeStep.sentenceRu}</small>`;
+    const componentNames = activeStep.componentIds.map((componentId) => byId(componentId).term).join(", ");
+    sequenceSentence.innerHTML = `${activeStep.label} — ${activeStep.sentence}<br><small>${activeStep.ru} — ${activeStep.sentenceRu}</small><small>Parts: ${componentNames}</small>`;
   }
 
   sequenceStepsContainer.innerHTML = assemblySequence
-    .map((step) => `
-      <button class="sequence-step ${activeStepId === step.id ? "is-active" : ""}" type="button" data-id="${step.id}">
-        <span>${step.label} / ${step.ru}</span>
-        <strong>${step.focusRelation}</strong>
-        <small>${step.sentence}</small>
-        <small>${step.sentenceRu}</small>
-      </button>
-    `)
+    .map((step) => {
+      const componentNames = step.componentIds.map((componentId) => byId(componentId).term).join(", ");
+      return `
+        <button class="sequence-step ${activeStepId === step.id ? "is-active" : ""}" type="button" data-id="${step.id}">
+          <span>${step.label} / ${step.ru}</span>
+          <strong>${step.focusRelation}</strong>
+          <small>${step.sentence}</small>
+          <small>${step.sentenceRu}</small>
+          <small>Parts: ${componentNames}</small>
+        </button>
+      `;
+    })
     .join("");
 
   sequenceStepsContainer.querySelectorAll(".sequence-step").forEach((button) => {
@@ -736,7 +741,8 @@ function selectSequenceStep(stepId) {
   relatedComponentIds = new Set(step.componentIds);
   step.componentIds.forEach((componentId) => activatedComponents.add(componentId));
   setPulse(step.componentIds[0]);
-  setStatus(`${step.sentence}<br><small>${step.sentenceRu}</small>`);
+  const componentNames = step.componentIds.map((componentId) => byId(componentId).term).join(", ");
+  setStatus(`${step.sentence}<br><small>${step.sentenceRu}</small><small>Highlighted: ${componentNames}</small>`);
   maybeComplete();
   render();
   speakBritish(step.sentence);
