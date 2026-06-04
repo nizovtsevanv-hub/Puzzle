@@ -1,13 +1,14 @@
-# Water Cycle Sequence Lab
+# Fuel Manifold Assembly Puzzle
 
-A clean, interactive educational puzzle that teaches the order of the water
-cycle. The app is a static site built with plain HTML, CSS, and JavaScript.
+A premium interactive technical English slide that teaches fuel manifold
+vocabulary through a numbered assembly puzzle. The app is a static site built
+with plain HTML, CSS, and JavaScript.
 
 ## Files
 
 - `index.html` - main entry point for the page
-- `style.css` - responsive layout, cards, buttons, and animations
-- `script.js` - puzzle state, card placement, hints, reset, and answer checking
+- `style.css` - premium responsive layout, cards, buttons, SVG states, and animations
+- `script.js` - component data, numbered slot matching, visual modes, and active card logic
 
 ## Run locally
 
@@ -26,8 +27,8 @@ You can also serve the folder with any static file server, but no npm,
 
 ## How to play
 
-1. Select a water cycle concept card.
-2. Place it into a numbered timeline slot.
-3. Fill all five slots.
-4. Use **Check sequence** to see which steps are correct.
-5. Use **Get a hint** or **Reset** if you want to try again.
+1. Review the **Full kit** mode to see every isolated numbered component.
+2. Switch to **Build / puzzle mode**.
+3. Select a bottom component card and match it to the same-number dashed slot.
+4. Read the active right-side card for pronunciation, function, fit relation, and sentences.
+5. Use **Final assembly** to compare your build with the completed unit.
