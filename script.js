@@ -281,18 +281,33 @@ function svgDefs() {
   return `
     <defs>
       <linearGradient id="fuchsiaGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#b06aa4" />
-        <stop offset="55%" stop-color="#8d4f82" />
-        <stop offset="100%" stop-color="#5d3157" />
+        <stop offset="0%" stop-color="#cfabc5" />
+        <stop offset="18%" stop-color="#9d668f" />
+        <stop offset="58%" stop-color="#7d496f" />
+        <stop offset="100%" stop-color="#4e2b49" />
       </linearGradient>
       <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#f8f7f3" />
-        <stop offset="44%" stop-color="#c6c8c8" />
-        <stop offset="100%" stop-color="#8f9699" />
+        <stop offset="0%" stop-color="#ffffff" />
+        <stop offset="16%" stop-color="#ecebe7" />
+        <stop offset="34%" stop-color="#aeb6ba" />
+        <stop offset="52%" stop-color="#f7f5ee" />
+        <stop offset="72%" stop-color="#9aa3a8" />
+        <stop offset="100%" stop-color="#5e666b" />
+      </linearGradient>
+      <linearGradient id="graphiteGradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#6a6870" />
+        <stop offset="19%" stop-color="#2d2d33" />
+        <stop offset="48%" stop-color="#4a4a51" />
+        <stop offset="78%" stop-color="#1f2025" />
+        <stop offset="100%" stop-color="#0f1115" />
       </linearGradient>
       <linearGradient id="innerDark" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#50575b" />
-        <stop offset="100%" stop-color="#1e2225" />
+        <stop offset="0%" stop-color="#4b5358" />
+        <stop offset="100%" stop-color="#14171a" />
+      </linearGradient>
+      <linearGradient id="badgeGradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#b989ab" />
+        <stop offset="100%" stop-color="#5d3457" />
       </linearGradient>
     </defs>
   `;
@@ -301,13 +316,14 @@ function svgDefs() {
 function numberBadge(component, x, y) {
   return `
     <g>
-      <circle cx="${x}" cy="${y}" r="17" fill="#67345e" />
+      <circle cx="${x}" cy="${y}" r="17" fill="url(#badgeGradient)" stroke="rgba(255,255,255,.58)" stroke-width="1.2" />
+      <circle cx="${x - 5}" cy="${y - 6}" r="5" fill="rgba(255,255,255,.35)" />
       <text x="${x}" y="${y + 5}" text-anchor="middle" fill="#fffdf9" font-size="15" font-weight="900">${component.number}</text>
     </g>
   `;
 }
 
-function bodyShape(className = "fuchsia-fill") {
+function bodyShape(className = "graphite-fill") {
   return `
     <g class="assembly-body">
       <rect x="210" y="230" width="500" height="94" rx="42" class="${className}" />
@@ -315,7 +331,9 @@ function bodyShape(className = "fuchsia-fill") {
       <ellipse cx="710" cy="277" rx="44" ry="47" class="${className}" />
       <ellipse cx="210" cy="277" rx="23" ry="26" fill="url(#innerDark)" />
       <ellipse cx="710" cy="277" rx="23" ry="26" fill="url(#innerDark)" />
-      <path d="M244 270 H680" stroke="rgba(255,255,255,.32)" stroke-width="7" stroke-linecap="round" />
+      <path d="M250 252 H672" stroke="rgba(255,255,255,.42)" stroke-width="5" stroke-linecap="round" />
+      <path d="M244 270 H680" stroke="rgba(255,255,255,.22)" stroke-width="7" stroke-linecap="round" />
+      <path d="M248 306 H674" stroke="rgba(141,85,125,.72)" stroke-width="4" stroke-linecap="round" />
     </g>
   `;
 }
@@ -327,7 +345,9 @@ function inletShape(className = "metal") {
       <ellipse cx="461" cy="98" rx="41" ry="16" class="${className}" />
       <ellipse cx="461" cy="98" rx="23" ry="9" fill="url(#innerDark)" />
       <rect x="435" y="132" width="52" height="92" rx="13" fill="#536c45" opacity=".95" />
+      <path d="M432 126 C454 138, 473 138, 493 126" stroke="rgba(255,255,255,.42)" stroke-width="3" fill="none" />
       <path d="M436 178 H486" stroke="rgba(255,255,255,.4)" stroke-width="5" />
+      <path d="M489 126 V222" stroke="rgba(255,255,255,.28)" stroke-width="4" stroke-linecap="round" />
     </g>
   `;
 }
@@ -341,6 +361,7 @@ function outletShape(className = "metal") {
           <ellipse cx="${x}" cy="380" rx="30" ry="15" class="${className}" />
           <ellipse cx="${x}" cy="380" rx="18" ry="8" fill="url(#innerDark)" />
           <rect x="${x - 21}" y="316" width="42" height="34" rx="10" fill="#536c45" opacity=".9" />
+          <path d="M${x - 20} 318 V362" stroke="rgba(255,255,255,.34)" stroke-width="3" stroke-linecap="round" />
         </g>
       `
     )
@@ -351,10 +372,11 @@ function outletShape(className = "metal") {
 function flangeShape(className = "metal") {
   return `
     <g>
-      <rect x="124" y="328" width="628" height="54" rx="18" class="${className}" opacity=".88" />
+      <rect x="124" y="328" width="628" height="54" rx="18" class="${className}" opacity=".94" />
       <circle cx="186" cy="354" r="17" fill="url(#innerDark)" opacity=".75" />
       <circle cx="690" cy="354" r="17" fill="url(#innerDark)" opacity=".75" />
       <rect x="374" y="340" width="168" height="30" rx="15" fill="rgba(255,255,255,.28)" />
+      <path d="M154 338 H724" stroke="rgba(255,255,255,.5)" stroke-width="3" stroke-linecap="round" />
     </g>
   `;
 }
@@ -363,8 +385,8 @@ function sealingShape(className = "green-fill") {
   if (className === "slot-shape") {
     return `
       <g>
-        <circle cx="461" cy="128" r="33" fill="none" stroke="rgba(36,36,40,.48)" stroke-width="2.5" stroke-dasharray="11 8" />
-        <circle cx="168" cy="278" r="28" fill="none" stroke="rgba(36,36,40,.48)" stroke-width="2.5" stroke-dasharray="11 8" />
+        <circle cx="461" cy="128" r="33" fill="none" stroke="rgba(93,52,87,.46)" stroke-width="2.5" stroke-dasharray="10 8" />
+        <circle cx="168" cy="278" r="28" fill="none" stroke="rgba(93,52,87,.46)" stroke-width="2.5" stroke-dasharray="10 8" />
       </g>
     `;
   }
@@ -373,6 +395,8 @@ function sealingShape(className = "green-fill") {
     <g>
       <circle cx="461" cy="128" r="33" fill="none" stroke="#536c45" stroke-width="12" />
       <circle cx="168" cy="278" r="28" fill="none" stroke="#536c45" stroke-width="10" />
+      <circle cx="452" cy="119" r="4" fill="rgba(255,255,255,.62)" />
+      <circle cx="161" cy="270" r="3" fill="rgba(255,255,255,.58)" />
     </g>
   `;
 }
@@ -384,6 +408,7 @@ function plugShape(className = "fuchsia-fill") {
       <ellipse cx="104" cy="277" rx="16" ry="29" class="${className}" />
       <circle cx="94" cy="277" r="16" fill="url(#metalGradient)" />
       <circle cx="94" cy="277" r="6" fill="url(#innerDark)" />
+      <path d="M116 258 H158" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round" />
       <path d="M77 294 C62 326, 95 342, 124 320" fill="none" stroke="#8f9699" stroke-width="5" stroke-dasharray="2 7" stroke-linecap="round" />
     </g>
   `;
@@ -396,6 +421,7 @@ function boltsShape(className = "metal") {
       <polygon points="169,294 201,294 209,282 161,282" class="${className}" />
       <rect x="676" y="294" width="26" height="82" rx="8" class="${className}" />
       <polygon points="673,294 705,294 713,282 665,282" class="${className}" />
+      <path d="M181 300 V366 M685 300 V366" stroke="rgba(255,255,255,.38)" stroke-width="2.5" stroke-linecap="round" />
     </g>
   `;
 }
@@ -404,8 +430,8 @@ function washersShape(className = "washer-fill") {
   if (className === "slot-shape") {
     return `
       <g>
-        <circle cx="185" cy="289" r="20" fill="none" stroke="rgba(36,36,40,.48)" stroke-width="2.5" stroke-dasharray="11 8" />
-        <circle cx="689" cy="289" r="20" fill="none" stroke="rgba(36,36,40,.48)" stroke-width="2.5" stroke-dasharray="11 8" />
+        <circle cx="185" cy="289" r="20" fill="none" stroke="rgba(93,52,87,.46)" stroke-width="2.5" stroke-dasharray="10 8" />
+        <circle cx="689" cy="289" r="20" fill="none" stroke="rgba(93,52,87,.46)" stroke-width="2.5" stroke-dasharray="10 8" />
       </g>
     `;
   }
@@ -506,14 +532,14 @@ function renderSvg() {
 
 function miniVisual(component) {
   const map = {
-    "collector-body": '<svg viewBox="0 0 120 70"><rect x="16" y="25" width="88" height="25" rx="12" fill="#8d4f82" stroke="#4b4b52"/><circle cx="17" cy="38" r="13" fill="#8d4f82" stroke="#4b4b52"/><circle cx="103" cy="38" r="13" fill="#8d4f82" stroke="#4b4b52"/></svg>',
-    "inlet-sleeve": '<svg viewBox="0 0 120 70"><rect x="46" y="12" width="28" height="46" rx="9" fill="#c6c8c8" stroke="#4b4b52"/><ellipse cx="60" cy="12" rx="14" ry="6" fill="#e8e7e3" stroke="#4b4b52"/><rect x="51" y="24" width="18" height="24" rx="4" fill="#536c45"/></svg>',
-    "outlet-sleeves": '<svg viewBox="0 0 120 70"><g transform="translate(15 14)"><rect x="0" y="16" width="18" height="38" rx="8" fill="#c6c8c8" stroke="#4b4b52"/><rect x="28" y="16" width="18" height="38" rx="8" fill="#c6c8c8" stroke="#4b4b52"/><rect x="56" y="16" width="18" height="38" rx="8" fill="#c6c8c8" stroke="#4b4b52"/><rect x="84" y="16" width="18" height="38" rx="8" fill="#c6c8c8" stroke="#4b4b52"/></g></svg>',
-    "mounting-flange": '<svg viewBox="0 0 120 70"><rect x="18" y="26" width="84" height="22" rx="8" fill="#c6c8c8" stroke="#4b4b52"/><circle cx="35" cy="37" r="7" fill="#242428"/><circle cx="85" cy="37" r="7" fill="#242428"/></svg>',
-    "sealing-rings": '<svg viewBox="0 0 120 70"><circle cx="45" cy="35" r="16" fill="none" stroke="#536c45" stroke-width="7"/><circle cx="78" cy="35" r="16" fill="none" stroke="#536c45" stroke-width="7"/></svg>',
-    "service-port-plug": '<svg viewBox="0 0 120 70"><rect x="44" y="24" width="42" height="24" rx="10" fill="#8d4f82" stroke="#4b4b52"/><circle cx="39" cy="36" r="12" fill="#c6c8c8" stroke="#4b4b52"/></svg>',
-    "fastening-bolts": '<svg viewBox="0 0 120 70"><rect x="42" y="22" width="11" height="36" rx="4" fill="#c6c8c8" stroke="#4b4b52"/><polygon points="38,22 57,22 62,15 34,15" fill="#c6c8c8" stroke="#4b4b52"/><rect x="70" y="22" width="11" height="36" rx="4" fill="#c6c8c8" stroke="#4b4b52"/><polygon points="66,22 85,22 90,15 62,15" fill="#c6c8c8" stroke="#4b4b52"/></svg>',
-    washers: '<svg viewBox="0 0 120 70"><circle cx="45" cy="35" r="15" fill="none" stroke="#c6c8c8" stroke-width="9"/><circle cx="77" cy="35" r="15" fill="none" stroke="#c6c8c8" stroke-width="9"/></svg>'
+    "collector-body": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m1" x1="0" x2="1"><stop stop-color="#696872"/><stop offset=".5" stop-color="#24252b"/><stop offset="1" stop-color="#101217"/></linearGradient></defs><rect x="16" y="25" width="88" height="25" rx="12" fill="url(#m1)" stroke="#5f6268"/><circle cx="17" cy="38" r="13" fill="url(#m1)" stroke="#5f6268"/><circle cx="103" cy="38" r="13" fill="url(#m1)" stroke="#5f6268"/><path d="M26 31 H94" stroke="rgba(255,255,255,.45)" stroke-width="2"/><path d="M28 48 H92" stroke="#8a557d" stroke-width="2"/></svg>',
+    "inlet-sleeve": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m2" x1="0" x2="1"><stop stop-color="#fff"/><stop offset=".42" stop-color="#aeb6ba"/><stop offset=".62" stop-color="#f4f1ea"/><stop offset="1" stop-color="#666e73"/></linearGradient></defs><rect x="46" y="12" width="28" height="46" rx="9" fill="url(#m2)" stroke="#4b4b52"/><ellipse cx="60" cy="12" rx="14" ry="6" fill="#f4f1ea" stroke="#4b4b52"/><rect x="51" y="24" width="18" height="24" rx="4" fill="#536c45"/><path d="M69 18 V54" stroke="rgba(255,255,255,.5)" stroke-width="2"/></svg>',
+    "outlet-sleeves": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m3" x1="0" x2="1"><stop stop-color="#fff"/><stop offset=".45" stop-color="#aeb6ba"/><stop offset="1" stop-color="#666e73"/></linearGradient></defs><g transform="translate(15 14)"><rect x="0" y="16" width="18" height="38" rx="8" fill="url(#m3)" stroke="#4b4b52"/><rect x="28" y="16" width="18" height="38" rx="8" fill="url(#m3)" stroke="#4b4b52"/><rect x="56" y="16" width="18" height="38" rx="8" fill="url(#m3)" stroke="#4b4b52"/><rect x="84" y="16" width="18" height="38" rx="8" fill="url(#m3)" stroke="#4b4b52"/></g></svg>',
+    "mounting-flange": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m4" x1="0" x2="1"><stop stop-color="#f9f8f2"/><stop offset=".5" stop-color="#b9c0c3"/><stop offset="1" stop-color="#737b80"/></linearGradient></defs><rect x="18" y="26" width="84" height="22" rx="8" fill="url(#m4)" stroke="#4b4b52"/><circle cx="35" cy="37" r="7" fill="#242428"/><circle cx="85" cy="37" r="7" fill="#242428"/><path d="M28 31 H92" stroke="rgba(255,255,255,.6)" stroke-width="2"/></svg>',
+    "sealing-rings": '<svg viewBox="0 0 120 70"><circle cx="45" cy="35" r="16" fill="none" stroke="#536c45" stroke-width="7"/><circle cx="78" cy="35" r="16" fill="none" stroke="#536c45" stroke-width="7"/><circle cx="40" cy="29" r="3" fill="rgba(255,255,255,.65)"/></svg>',
+    "service-port-plug": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m5" x1="0" x2="1"><stop stop-color="#cda8c4"/><stop offset=".6" stop-color="#7d496f"/><stop offset="1" stop-color="#4e2b49"/></linearGradient><linearGradient id="s5" x1="0" x2="1"><stop stop-color="#fff"/><stop offset=".5" stop-color="#bbc1c4"/><stop offset="1" stop-color="#686f74"/></linearGradient></defs><rect x="44" y="24" width="42" height="24" rx="10" fill="url(#m5)" stroke="#4b4b52"/><circle cx="39" cy="36" r="12" fill="url(#s5)" stroke="#4b4b52"/><path d="M52 29 H80" stroke="rgba(255,255,255,.4)" stroke-width="2"/></svg>',
+    "fastening-bolts": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m6" x1="0" x2="1"><stop stop-color="#fff"/><stop offset=".42" stop-color="#aeb6ba"/><stop offset="1" stop-color="#666e73"/></linearGradient></defs><rect x="42" y="22" width="11" height="36" rx="4" fill="url(#m6)" stroke="#4b4b52"/><polygon points="38,22 57,22 62,15 34,15" fill="url(#m6)" stroke="#4b4b52"/><rect x="70" y="22" width="11" height="36" rx="4" fill="url(#m6)" stroke="#4b4b52"/><polygon points="66,22 85,22 90,15 62,15" fill="url(#m6)" stroke="#4b4b52"/></svg>',
+    washers: '<svg viewBox="0 0 120 70"><defs><linearGradient id="m7" x1="0" x2="1"><stop stop-color="#fff"/><stop offset=".5" stop-color="#b9c0c3"/><stop offset="1" stop-color="#737b80"/></linearGradient></defs><circle cx="45" cy="35" r="15" fill="none" stroke="url(#m7)" stroke-width="9"/><circle cx="77" cy="35" r="15" fill="none" stroke="url(#m7)" stroke-width="9"/></svg>'
   };
 
   return map[component.id];
