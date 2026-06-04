@@ -623,8 +623,7 @@ function updateModeText() {
 }
 
 function updateProgress() {
-  const touched = new Set([...activated, ...fitted]);
-  const count = currentMode === "final" || isComplete() ? components.length : Math.max(fitted.size, touched.size);
+  const count = currentMode === "final" || fitted.size === components.length ? components.length : fitted.size;
   progressCount.textContent = count;
   progressLabel.textContent = count === components.length ? "of 8 complete" : "of 8 placed";
 }
