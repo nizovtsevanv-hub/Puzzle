@@ -168,13 +168,15 @@ p {
 
 .mode-button:hover,
 .button:hover,
-.component-card:hover {
+.component-card:hover,
+.active-card:hover {
   transform: translateY(-2px);
 }
 
 .mode-button:focus-visible,
 .button:focus-visible,
 .component-card:focus-visible,
+.active-card:focus-visible,
 .slot-hotspot:focus-visible {
   outline: 3px solid rgba(141, 79, 130, 0.34);
   outline-offset: 3px;
@@ -195,6 +197,16 @@ p {
 .active-card,
 .component-strip {
   padding: clamp(20px, 3vw, 30px);
+}
+
+.active-card {
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.active-card.is-card-pulse {
+  animation: cardLift 420ms ease;
+  border-color: rgba(141, 79, 130, 0.55);
 }
 
 .panel-heading,
@@ -343,6 +355,105 @@ p {
   line-height: 1.48;
 }
 
+.relation-panel {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(36, 36, 40, 0.1);
+}
+
+.relation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.relation-grid div {
+  padding: 12px;
+  border: 1px solid rgba(36, 36, 40, 0.08);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(246, 241, 234, 0.66));
+}
+
+.relation-grid span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--fuchsia-deep);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.relation-grid strong {
+  display: block;
+  color: var(--graphite);
+  font-size: 0.88rem;
+  line-height: 1.32;
+}
+
+.sequence-panel {
+  margin-top: 18px;
+}
+
+.sequence-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.35fr) minmax(0, 0.65fr);
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.sequence-heading p {
+  margin-bottom: 0;
+  color: var(--graphite-soft);
+  font-weight: 780;
+}
+
+.sequence-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.sequence-step {
+  display: grid;
+  gap: 8px;
+  min-height: 124px;
+  padding: 14px;
+  border: 1px solid rgba(36, 36, 40, 0.1);
+  border-radius: 18px;
+  color: var(--graphite);
+  text-align: left;
+  background: rgba(255, 253, 249, 0.74);
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.sequence-step:hover,
+.sequence-step.is-active {
+  transform: translateY(-2px);
+  border-color: rgba(141, 79, 130, 0.56);
+  box-shadow: 0 14px 28px rgba(103, 52, 94, 0.13);
+}
+
+.sequence-step span {
+  color: var(--fuchsia-deep);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sequence-step strong {
+  font-size: 0.96rem;
+}
+
+.sequence-step small {
+  color: var(--graphite-soft);
+  font-weight: 700;
+  line-height: 1.38;
+}
+
 .component-strip {
   margin-top: 18px;
 }
@@ -373,6 +484,14 @@ p {
 .component-card.is-active {
   border-color: rgba(141, 79, 130, 0.72);
   box-shadow: 0 16px 36px rgba(103, 52, 94, 0.18);
+}
+
+.component-card.is-related {
+  border-color: rgba(197, 166, 106, 0.84);
+}
+
+.component-card.is-pulsing {
+  animation: microWiggle 420ms ease;
 }
 
 .component-card.is-fitted {
@@ -431,9 +550,15 @@ p {
 }
 
 .slot-hotspot.is-active .slot-shape,
-.kit-item.is-active .kit-shape {
+.slot-hotspot.is-related .slot-shape,
+.kit-item.is-active .kit-shape,
+.kit-item.is-related .kit-shape {
   stroke: var(--gold);
   stroke-width: 4;
+}
+
+.slot-hotspot.is-active .slot-shape {
+  filter: drop-shadow(0 0 8px rgba(197, 166, 106, 0.5));
 }
 
 .slot-hotspot.is-fitted .slot-shape {
@@ -501,6 +626,29 @@ p {
   cursor: default;
 }
 
+@keyframes microWiggle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  35% {
+    transform: translateY(-5px) rotate(-0.45deg);
+  }
+  70% {
+    transform: translateY(-3px) rotate(0.45deg);
+  }
+}
+
+@keyframes cardLift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
 @keyframes fitIn {
   0% {
     opacity: 0;
@@ -519,6 +667,10 @@ p {
 
   .components {
     grid-template-columns: repeat(4, minmax(150px, 1fr));
+  }
+
+  .sequence-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -547,6 +699,15 @@ p {
 
   .assembly-svg {
     min-height: 380px;
+  }
+
+  .sequence-heading,
+  .relation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sequence-steps {
+    grid-template-columns: 1fr;
   }
 
   .components {

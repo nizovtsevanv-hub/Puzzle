@@ -8,7 +8,13 @@ const components = [
     function: "Forms the main fuel distribution chamber.",
     fit: "Receives the inlet sleeve, outlet sleeves, sealing rings, service port plug, flange, bolts, and washers.",
     sentence: "The collector body distributes fuel to each outlet port.",
-    step: "Place the collector body into slot 1 as the base of the assembly."
+    step: "Place the collector body into slot 1 as the base of the assembly.",
+    relation: {
+      part: "collector body",
+      position: "central base",
+      action: "receives",
+      relation: "all interface parts"
+    }
   },
   {
     number: 2,
@@ -19,7 +25,13 @@ const components = [
     function: "Guides incoming fuel into the internal flow chamber.",
     fit: "Goes into the upper inlet port of the collector body.",
     sentence: "The inlet sleeve aligns the fuel supply with the manifold.",
-    step: "Insert the inlet sleeve into the top opening of the collector body."
+    step: "Insert the inlet sleeve into the top opening of the collector body.",
+    relation: {
+      part: "inlet sleeve",
+      position: "upper inlet port",
+      action: "goes into",
+      relation: "collector body"
+    }
   },
   {
     number: 3,
@@ -30,7 +42,13 @@ const components = [
     function: "Direct fuel from the collector to four outlet lines.",
     fit: "Fit into the four lower outlet ports on the collector body.",
     sentence: "The outlet sleeves connect the manifold to downstream fuel lines.",
-    step: "Fit the four outlet sleeves into the four lower ports."
+    step: "Fit the four outlet sleeves into the four lower ports.",
+    relation: {
+      part: "outlet sleeves",
+      position: "four lower ports",
+      action: "fit into",
+      relation: "collector body"
+    }
   },
   {
     number: 4,
@@ -41,7 +59,13 @@ const components = [
     function: "Provides a flat mounting surface for the final unit.",
     fit: "Sits behind the collector body and aligns with the bolt positions.",
     sentence: "The mounting flange supports the collector on the assembly frame.",
-    step: "Align the mounting flange behind the collector body."
+    step: "Align the mounting flange behind the collector body.",
+    relation: {
+      part: "mounting flange",
+      position: "behind the body",
+      action: "aligns with",
+      relation: "bolt holes"
+    }
   },
   {
     number: 5,
@@ -52,7 +76,13 @@ const components = [
     function: "Prevent leakage around the inlet and service interfaces.",
     fit: "Sit in circular grooves on the inlet sleeve and service port plug.",
     sentence: "The sealing rings keep the fuel path pressure-tight.",
-    step: "Place the sealing rings into the grooves before closing the ports."
+    step: "Place the sealing rings into the grooves before closing the ports.",
+    relation: {
+      part: "sealing rings",
+      position: "circular grooves",
+      action: "sit in",
+      relation: "sleeve and plug interfaces"
+    }
   },
   {
     number: 6,
@@ -63,7 +93,13 @@ const components = [
     function: "Closes the service access point when inspection is complete.",
     fit: "Threads into the left service port of the collector body.",
     sentence: "The service port plug closes the inspection opening.",
-    step: "Insert the service port plug into the left service port."
+    step: "Insert the service port plug into the left service port.",
+    relation: {
+      part: "service port plug",
+      position: "left service port",
+      action: "threads into",
+      relation: "collector body"
+    }
   },
   {
     number: 7,
@@ -74,7 +110,13 @@ const components = [
     function: "Clamp the flange and collector body together.",
     fit: "Pass through the washers and flange holes.",
     sentence: "The fastening bolts secure the collector to the flange.",
-    step: "Insert the fastening bolts through the washer and flange positions."
+    step: "Insert the fastening bolts through the washer and flange positions.",
+    relation: {
+      part: "fastening bolts",
+      position: "flange holes",
+      action: "pass through",
+      relation: "washers and flange"
+    }
   },
   {
     number: 8,
@@ -85,17 +127,25 @@ const components = [
     function: "Spread bolt load and protect the flange surface.",
     fit: "Sit under the fastening bolt heads.",
     sentence: "The washers distribute the clamping force evenly.",
-    step: "Place the washers under the bolt heads before tightening."
+    step: "Place the washers under the bolt heads before tightening.",
+    relation: {
+      part: "washers",
+      position: "under bolt heads",
+      action: "sit under",
+      relation: "fastening bolts"
+    }
   }
 ];
 
 const svg = document.querySelector("#assemblySvg");
 const componentStrip = document.querySelector("#componentStrip");
 const progressCount = document.querySelector("#progressCount");
+const progressLabel = document.querySelector("#progressLabel");
 const statusMessage = document.querySelector("#statusMessage");
 const stageEyebrow = document.querySelector("#stageEyebrow");
 const stageTitle = document.querySelector("#stageTitle");
 const stageNote = document.querySelector("#stageNote");
+const activeCard = document.querySelector("#activeCard");
 const activeNumber = document.querySelector("#activeNumber");
 const activeTerm = document.querySelector("#activeTerm");
 const activeIpa = document.querySelector("#activeIpa");
@@ -104,6 +154,12 @@ const activeFunction = document.querySelector("#activeFunction");
 const activeFit = document.querySelector("#activeFit");
 const activeSentence = document.querySelector("#activeSentence");
 const activeStep = document.querySelector("#activeStep");
+const relationPart = document.querySelector("#relationPart");
+const relationPosition = document.querySelector("#relationPosition");
+const relationAction = document.querySelector("#relationAction");
+const relationText = document.querySelector("#relationText");
+const sequenceSentence = document.querySelector("#sequenceSentence");
+const sequenceStepsContainer = document.querySelector("#sequenceSteps");
 const modeButtons = document.querySelectorAll(".mode-button");
 const fitButton = document.querySelector("#fitButton");
 const hintButton = document.querySelector("#hintButton");
@@ -113,6 +169,11 @@ const assemblyActions = document.querySelector(".assembly-actions");
 let activeId = components[0].id;
 let currentMode = "kit";
 let fitted = new Set();
+let activated = new Set();
+let relatedIds = new Set([activeId]);
+let pulseId = null;
+let activeSequenceId = "first";
+let speechTurn = 0;
 
 const modeText = {
   kit: {
@@ -132,13 +193,88 @@ const modeText = {
   }
 };
 
+const sequenceSteps = [
+  {
+    id: "first",
+    label: "First",
+    title: "Create the base",
+    componentIds: ["collector-body", "mounting-flange"],
+    sentence: "First, place the collector body on the mounting flange.",
+    logic: "The flange supports the body and prepares the bolt positions."
+  },
+  {
+    id: "then",
+    label: "Then",
+    title: "Insert the sleeves",
+    componentIds: ["inlet-sleeve", "outlet-sleeves"],
+    sentence: "Then, insert the inlet sleeve and fit the outlet sleeves into the collector body.",
+    logic: "The inlet brings fuel in; the four outlets distribute fuel out."
+  },
+  {
+    id: "next",
+    label: "Next",
+    title: "Seal the service points",
+    componentIds: ["sealing-rings", "service-port-plug"],
+    sentence: "Next, place the sealing rings and insert the service port plug into the left port.",
+    logic: "The rings seal the interfaces before the service port is closed."
+  },
+  {
+    id: "finally",
+    label: "Finally",
+    title: "Clamp the assembly",
+    componentIds: ["washers", "fastening-bolts"],
+    sentence: "Finally, place the washers under the bolt heads and tighten the fastening bolts.",
+    logic: "The washers spread the load while the bolts clamp the collector to the flange."
+  }
+];
+
 function byId(id) {
   return components.find((component) => component.id === id);
+}
+
+function isComplete() {
+  const touched = new Set([...activated, ...fitted]);
+  return touched.size === components.length;
 }
 
 function setStatus(message, type = "") {
   statusMessage.textContent = message;
   statusMessage.className = `status ${type}`.trim();
+}
+
+function speakBritish(text) {
+  if (!("speechSynthesis" in window)) {
+    return;
+  }
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  const voices = window.speechSynthesis.getVoices();
+  const britishVoice = voices.find((voice) => voice.lang === "en-GB");
+  if (britishVoice) {
+    utterance.voice = britishVoice;
+  }
+  utterance.lang = "en-GB";
+  utterance.rate = speechTurn % 2 === 0 ? 1 : 0.85;
+  speechTurn += 1;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
+}
+
+function pulseActiveCard() {
+  activeCard.classList.remove("is-card-pulse");
+  void activeCard.offsetWidth;
+  activeCard.classList.add("is-card-pulse");
+  window.setTimeout(() => activeCard.classList.remove("is-card-pulse"), 430);
+}
+
+function setPulse(componentId) {
+  pulseId = componentId;
+  window.setTimeout(() => {
+    if (pulseId === componentId) {
+      pulseId = null;
+      renderStrip();
+    }
+  }, 430);
 }
 
 function svgDefs() {
@@ -285,9 +421,10 @@ function washersShape(className = "washer-fill") {
 function slotMarkup(component, shapeMarkup, labelX, labelY, hotspotBox) {
   const isFitted = currentMode === "final" || currentMode === "kit" || fitted.has(component.id);
   const isActive = activeId === component.id;
+  const isRelated = relatedIds.has(component.id);
   const [x, y, width, height] = hotspotBox;
   return `
-    <g class="slot-hotspot ${isActive ? "is-active" : ""} ${isFitted ? "is-fitted" : ""}" data-id="${component.id}" tabindex="0" role="button" aria-label="Slot ${component.number}, ${component.term}">
+    <g class="slot-hotspot ${isActive ? "is-active" : ""} ${isRelated ? "is-related" : ""} ${isFitted ? "is-fitted" : ""}" data-id="${component.id}" tabindex="0" role="button" aria-label="Slot ${component.number}, ${component.term}">
       <g class="slot-outline">${shapeMarkup("slot-shape")}</g>
       <g class="slot-fill ${isFitted ? "is-visible" : ""}">${shapeMarkup()}</g>
       ${numberBadge(component, labelX, labelY)}
@@ -323,8 +460,9 @@ function buildAssemblySvg() {
 
 function kitItem(component, visual, x, y, label, sub) {
   const activeClass = activeId === component.id ? "is-active" : "";
+  const relatedClass = relatedIds.has(component.id) ? "is-related" : "";
   return `
-    <g class="kit-item ${activeClass}" data-id="${component.id}" tabindex="0" role="button" aria-label="Component ${component.number}, ${component.term}">
+    <g class="kit-item ${activeClass} ${relatedClass}" data-id="${component.id}" tabindex="0" role="button" aria-label="Component ${component.number}, ${component.term}">
       <g transform="translate(${x} ${y}) scale(.72)">
         <g class="kit-shape">${visual}</g>
       </g>
@@ -385,9 +523,11 @@ function renderStrip() {
   componentStrip.innerHTML = components
     .map((component) => {
       const isActive = activeId === component.id;
-      const isFitted = fitted.has(component.id);
+      const isRelated = relatedIds.has(component.id);
+      const isFitted = currentMode === "final" || fitted.has(component.id);
+      const isPulsing = pulseId === component.id;
       return `
-        <button class="component-card ${isActive ? "is-active" : ""} ${isFitted ? "is-fitted" : ""}" type="button" data-id="${component.id}" aria-pressed="${isActive}">
+        <button class="component-card ${isActive ? "is-active" : ""} ${isRelated ? "is-related" : ""} ${isFitted ? "is-fitted" : ""} ${isPulsing ? "is-pulsing" : ""}" type="button" data-id="${component.id}" aria-pressed="${isActive}">
           <span class="component-topline">
             <span class="part-number">${component.number}</span>
             <span>${isFitted ? "fitted" : "slot " + component.number}</span>
@@ -402,7 +542,7 @@ function renderStrip() {
     .join("");
 
   componentStrip.querySelectorAll(".component-card").forEach((card) => {
-    card.addEventListener("click", () => selectComponent(card.dataset.id));
+    card.addEventListener("click", () => selectComponent(card.dataset.id, { source: "bottom" }));
   });
 }
 
@@ -416,6 +556,33 @@ function renderActiveCard() {
   activeFit.textContent = component.fit;
   activeSentence.textContent = component.sentence;
   activeStep.textContent = component.step;
+  relationPart.textContent = component.relation.part;
+  relationPosition.textContent = component.relation.position;
+  relationAction.textContent = component.relation.action;
+  relationText.textContent = component.relation.relation;
+}
+
+function renderSequence() {
+  const activeStep = sequenceSteps.find((step) => step.id === activeSequenceId);
+  if (activeStep) {
+    sequenceSentence.textContent = `${activeStep.label} — ${activeStep.sentence} ${activeStep.logic}`;
+  }
+
+  sequenceStepsContainer.innerHTML = sequenceSteps
+    .map(
+      (step) => `
+        <button class="sequence-step ${activeSequenceId === step.id ? "is-active" : ""}" type="button" data-id="${step.id}">
+          <span>${step.label}</span>
+          <strong>${step.title}</strong>
+          <small>${step.sentence}</small>
+        </button>
+      `
+    )
+    .join("");
+
+  sequenceStepsContainer.querySelectorAll(".sequence-step").forEach((button) => {
+    button.addEventListener("click", () => selectSequenceStep(button.dataset.id));
+  });
 }
 
 function updateModeText() {
@@ -430,7 +597,10 @@ function updateModeText() {
 }
 
 function updateProgress() {
-  progressCount.textContent = currentMode === "final" ? components.length : fitted.size;
+  const touched = new Set([...activated, ...fitted]);
+  const count = currentMode === "final" || isComplete() ? components.length : Math.max(fitted.size, touched.size);
+  progressCount.textContent = count;
+  progressLabel.textContent = count === components.length ? "of 8 complete" : "of 8 placed";
 }
 
 function render() {
@@ -438,14 +608,41 @@ function render() {
   renderActiveCard();
   renderSvg();
   renderStrip();
+  renderSequence();
   updateProgress();
 }
 
-function selectComponent(componentId) {
-  activeId = componentId;
+function maybeComplete() {
+  if (!isComplete()) {
+    return false;
+  }
+
+  currentMode = "final";
+  setStatus("The assembly is complete.", "success");
+  return true;
+}
+
+function selectComponent(componentId, options = {}) {
+  const { source = "bottom", speak = true, ensureBuild = true, pulse = true } = options;
   const component = byId(componentId);
-  setStatus(`Component ${component.number} selected: ${component.term}. Slot ${component.number} is the matching assembly region.`);
+  if (ensureBuild && currentMode !== "build" && !isComplete()) {
+    currentMode = "build";
+  }
+  activeId = componentId;
+  activated.add(componentId);
+  relatedIds = new Set([componentId]);
+  activeSequenceId = "";
+  if (pulse) {
+    setPulse(componentId);
+  }
+  const sourceText = source === "slot" ? "Slot" : source === "card" ? "Right card" : "Bottom component";
+  setStatus(`${sourceText} ${component.number} selected: ${component.term}. Part ${component.number}, slot ${component.number}, and card ${component.number} are linked.`);
+  maybeComplete();
   render();
+  if (speak) {
+    speakBritish(component.term.replace(/\s*\(x\d+\)/, ""));
+  }
+  pulseActiveCard();
 }
 
 function fitComponent(componentId = activeId) {
@@ -454,25 +651,27 @@ function fitComponent(componentId = activeId) {
   }
 
   fitted.add(componentId);
+  activated.add(componentId);
   activeId = componentId;
+  relatedIds = new Set([componentId]);
+  activeSequenceId = "";
   const component = byId(componentId);
   const complete = fitted.size === components.length;
   setStatus(
     complete
-      ? "Assembly complete. All bottom components match their numbered slots."
+      ? "The assembly is complete."
       : `Component ${component.number} fitted into slot ${component.number}: ${component.term}.`,
     complete ? "success" : ""
   );
+  if (complete) {
+    currentMode = "final";
+  }
+  setPulse(componentId);
   render();
 }
 
 function handleDiagramClick(componentId) {
-  if (currentMode === "build" && activeId === componentId && !fitted.has(componentId)) {
-    fitComponent(componentId);
-    return;
-  }
-
-  selectComponent(componentId);
+  selectComponent(componentId, { source: "slot", ensureBuild: false });
 }
 
 function showHint() {
@@ -480,16 +679,39 @@ function showHint() {
   if (currentMode !== "build") {
     currentMode = "build";
   }
-  setStatus(`Fit relation for ${component.number}: ${component.fit}`);
+  relatedIds = new Set([component.id]);
+  setStatus(`Fit relation for ${component.number}: ${component.relation.part} ${component.relation.action} ${component.relation.relation} at the ${component.relation.position}.`);
   render();
+  speakBritish(`${component.relation.part} ${component.relation.action} ${component.relation.relation}.`);
 }
 
 function resetBuild() {
   fitted = new Set();
+  activated = new Set();
   currentMode = "build";
   activeId = components[0].id;
+  relatedIds = new Set([activeId]);
+  activeSequenceId = "first";
   setStatus("Build reset. Select a bottom component and fit it into the same-number dashed slot.");
   render();
+}
+
+function selectSequenceStep(stepId) {
+  const step = sequenceSteps.find((item) => item.id === stepId);
+  if (!isComplete()) {
+    currentMode = "build";
+  }
+  activeSequenceId = step.id;
+  activeId = step.componentIds[0];
+  relatedIds = new Set(step.componentIds);
+  step.componentIds.forEach((componentId) => activated.add(componentId));
+  sequenceSentence.textContent = `${step.label} — ${step.sentence} ${step.logic}`;
+  setPulse(step.componentIds[0]);
+  setStatus(`${step.label} — ${step.logic}`);
+  maybeComplete();
+  render();
+  speakBritish(step.sentence);
+  pulseActiveCard();
 }
 
 modeButtons.forEach((button) => {
@@ -509,5 +731,12 @@ modeButtons.forEach((button) => {
 fitButton.addEventListener("click", () => fitComponent());
 hintButton.addEventListener("click", showHint);
 resetButton.addEventListener("click", resetBuild);
+activeCard.addEventListener("click", () => selectComponent(activeId, { source: "card" }));
+activeCard.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    selectComponent(activeId, { source: "card" });
+  }
+});
 
 render();

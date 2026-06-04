@@ -17,7 +17,7 @@
         </div>
         <div class="progress-card" aria-label="Assembly progress">
           <span id="progressCount">0</span>
-          <small>of 8 components fitted</small>
+          <small id="progressLabel">of 8 placed</small>
         </div>
       </header>
 
@@ -64,7 +64,13 @@
           </p>
         </section>
 
-        <aside class="active-card panel" aria-labelledby="activeTerm">
+        <aside
+          class="active-card panel"
+          id="activeCard"
+          aria-labelledby="activeTerm"
+          role="button"
+          tabindex="0"
+        >
           <p class="eyebrow">Active component card</p>
           <div class="active-topline">
             <span class="active-number" id="activeNumber">1</span>
@@ -93,7 +99,40 @@
               <dd id="activeStep"></dd>
             </div>
           </dl>
+
+          <section class="relation-panel" aria-labelledby="relationTitle">
+            <p class="eyebrow" id="relationTitle">How it fits</p>
+            <div class="relation-grid">
+              <div>
+                <span>Part</span>
+                <strong id="relationPart">Collector Body</strong>
+              </div>
+              <div>
+                <span>Position</span>
+                <strong id="relationPosition">base</strong>
+              </div>
+              <div>
+                <span>Action</span>
+                <strong id="relationAction">place</strong>
+              </div>
+              <div>
+                <span>Relation</span>
+                <strong id="relationText">receives all parts</strong>
+              </div>
+            </div>
+          </section>
         </aside>
+      </section>
+
+      <section class="sequence-panel panel" aria-labelledby="sequenceTitle">
+        <div class="sequence-heading">
+          <div>
+            <p class="eyebrow">Step-by-step sentence trainer</p>
+            <h2 id="sequenceTitle">Assembly sequence</h2>
+          </div>
+          <p id="sequenceSentence">First — place the collector body on the mounting flange.</p>
+        </div>
+        <div class="sequence-steps" id="sequenceSteps"></div>
       </section>
 
       <section class="component-strip" aria-labelledby="stripTitle">
