@@ -295,11 +295,11 @@ function svgDefs() {
         <stop offset="100%" stop-color="#5e666b" />
       </linearGradient>
       <linearGradient id="graphiteGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#6a6870" />
-        <stop offset="19%" stop-color="#2d2d33" />
-        <stop offset="48%" stop-color="#4a4a51" />
-        <stop offset="78%" stop-color="#1f2025" />
-        <stop offset="100%" stop-color="#0f1115" />
+        <stop offset="0%" stop-color="#8f8f96" />
+        <stop offset="18%" stop-color="#5a5b62" />
+        <stop offset="46%" stop-color="#75767d" />
+        <stop offset="75%" stop-color="#3d3f46" />
+        <stop offset="100%" stop-color="#2a2d34" />
       </linearGradient>
       <linearGradient id="innerDark" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0%" stop-color="#4b5358" />
@@ -532,7 +532,7 @@ function renderSvg() {
 
 function miniVisual(component) {
   const map = {
-    "collector-body": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m1" x1="0" x2="1"><stop stop-color="#696872"/><stop offset=".5" stop-color="#24252b"/><stop offset="1" stop-color="#101217"/></linearGradient></defs><rect x="16" y="25" width="88" height="25" rx="12" fill="url(#m1)" stroke="#5f6268"/><circle cx="17" cy="38" r="13" fill="url(#m1)" stroke="#5f6268"/><circle cx="103" cy="38" r="13" fill="url(#m1)" stroke="#5f6268"/><path d="M26 31 H94" stroke="rgba(255,255,255,.45)" stroke-width="2"/><path d="M28 48 H92" stroke="#8a557d" stroke-width="2"/></svg>',
+    "collector-body": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m1" x1="0" x2="1"><stop stop-color="#8f8f96"/><stop offset=".45" stop-color="#5a5b62"/><stop offset="1" stop-color="#2a2d34"/></linearGradient></defs><rect x="16" y="25" width="88" height="25" rx="12" fill="url(#m1)" stroke="#6d7076"/><circle cx="17" cy="38" r="13" fill="url(#m1)" stroke="#6d7076"/><circle cx="103" cy="38" r="13" fill="url(#m1)" stroke="#6d7076"/><path d="M26 31 H94" stroke="rgba(255,255,255,.45)" stroke-width="2"/><path d="M28 48 H92" stroke="#8a557d" stroke-width="2"/></svg>',
     "inlet-sleeve": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m2" x1="0" x2="1"><stop stop-color="#fff"/><stop offset=".42" stop-color="#aeb6ba"/><stop offset=".62" stop-color="#f4f1ea"/><stop offset="1" stop-color="#666e73"/></linearGradient></defs><rect x="46" y="12" width="28" height="46" rx="9" fill="url(#m2)" stroke="#4b4b52"/><ellipse cx="60" cy="12" rx="14" ry="6" fill="#f4f1ea" stroke="#4b4b52"/><rect x="51" y="24" width="18" height="24" rx="4" fill="#536c45"/><path d="M69 18 V54" stroke="rgba(255,255,255,.5)" stroke-width="2"/></svg>',
     "outlet-sleeves": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m3" x1="0" x2="1"><stop stop-color="#fff"/><stop offset=".45" stop-color="#aeb6ba"/><stop offset="1" stop-color="#666e73"/></linearGradient></defs><g transform="translate(15 14)"><rect x="0" y="16" width="18" height="38" rx="8" fill="url(#m3)" stroke="#4b4b52"/><rect x="28" y="16" width="18" height="38" rx="8" fill="url(#m3)" stroke="#4b4b52"/><rect x="56" y="16" width="18" height="38" rx="8" fill="url(#m3)" stroke="#4b4b52"/><rect x="84" y="16" width="18" height="38" rx="8" fill="url(#m3)" stroke="#4b4b52"/></g></svg>',
     "mounting-flange": '<svg viewBox="0 0 120 70"><defs><linearGradient id="m4" x1="0" x2="1"><stop stop-color="#f9f8f2"/><stop offset=".5" stop-color="#b9c0c3"/><stop offset="1" stop-color="#737b80"/></linearGradient></defs><rect x="18" y="26" width="84" height="22" rx="8" fill="url(#m4)" stroke="#4b4b52"/><circle cx="35" cy="37" r="7" fill="#242428"/><circle cx="85" cy="37" r="7" fill="#242428"/><path d="M28 31 H92" stroke="rgba(255,255,255,.6)" stroke-width="2"/></svg>',
