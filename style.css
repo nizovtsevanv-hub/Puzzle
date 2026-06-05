@@ -331,6 +331,10 @@ p {
     linear-gradient(135deg, rgba(255, 253, 248, 0.9), rgba(231, 226, 217, 0.84));
 }
 
+.missing-image[hidden] {
+  display: none;
+}
+
 .missing-image code {
   padding: 3px 7px;
   border-radius: 7px;
