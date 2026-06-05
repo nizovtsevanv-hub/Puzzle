@@ -249,6 +249,10 @@ const resetButton = document.querySelector("#resetButton");
 const assemblyActions = document.querySelector(".assembly-actions");
 
 const componentsById = new Map(assemblyComponents.map((component) => [component.id, component]));
+const SOURCE_COORDS = { width: 1024, height: 768 };
+const PNG_COORDS = { width: 1536, height: 1024 };
+const xScale = PNG_COORDS.width / SOURCE_COORDS.width;
+const yScale = PNG_COORDS.height / SOURCE_COORDS.height;
 let activeComponentId = assemblyComponents[0].id;
 let activeStepId = assemblySequence[0].id;
 let currentMode = "kit";
@@ -294,7 +298,23 @@ function byId(componentId) {
 }
 
 function markerRadius(component) {
-  return { small: 13, medium: 16, large: 19 }[component.markerSize] || 16;
+  return ({ small: 13, medium: 16, large: 19 }[component.markerSize] || 16) * yScale;
+}
+
+function scalePoint(point) {
+  return {
+    x: point.x * xScale,
+    y: point.y * yScale
+  };
+}
+
+function scaleBox(box) {
+  return {
+    x: box.x * xScale,
+    y: box.y * yScale,
+    w: box.w * xScale,
+    h: box.h * yScale
+  };
 }
 
 function setStatus(message, type = "") {
@@ -343,10 +363,11 @@ function renderOverlayComponent(component) {
   const isActive = activeComponentId === component.id;
   const isRelated = relatedComponentIds.has(component.id);
   const isActivated = currentMode === "final" || activatedComponents.has(component.id);
-  const box = currentMode === "kit" ? component.bottomItem : component.slot;
+  const rawBox = currentMode === "kit" ? component.bottomItem : component.slot;
+  const box = scaleBox(rawBox);
   const marker = currentMode === "kit"
-    ? { x: box.x + box.w / 2, y: box.y - 16 }
-    : component.marker;
+    ? { x: box.x + box.w / 2, y: box.y - 16 * yScale }
+    : scalePoint(component.marker);
   const shapeClass = currentMode === "kit" ? "kit-shape" : "slot-shape";
   return `
     <g class="${currentMode === "kit" ? "kit-item" : "slot-hotspot"} ${isActive ? "is-active" : ""} ${isRelated ? "is-related" : ""} ${isActivated ? "is-fitted" : ""}" data-id="${component.id}" tabindex="0" role="button" aria-label="${component.number}: ${component.slotLabel}">
@@ -358,8 +379,8 @@ function renderOverlayComponent(component) {
 }
 
 function renderCallout(component) {
-  const box = component.slot;
-  const marker = component.marker;
+  const box = scaleBox(component.slot);
+  const marker = scalePoint(component.marker);
   return `<path class="callout-line" d="M${marker.x} ${marker.y} L${box.x + box.w / 2} ${box.y + box.h / 2}" />`;
 }
 
