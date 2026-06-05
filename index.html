@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Technical English Assembly Puzzle</title>
+
+  <style>
+    :root {
+      --fuchsia: #A64D79;
+      --fuchsia-dark: #6D3453;
+      --paper: #F4EFE8;
+      --card: #FFFDFB;
+      --border: #E5D8CC;
+      --text: #342D2A;
+      --muted: #756A64;
+      --yellow: #F5D90A;
+      --graphite: #3F3F46;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.7), rgba(255,255,255,0) 38%),
+        linear-gradient(180deg, #F4EFE8 0%, #EFE7DE 100%);
+      color: var(--text);
+    }
+
+    .app {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    header {
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: rgba(255, 253, 251, 0.9);
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 40px rgba(100, 80, 70, 0.12);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 44px);
+      color: var(--fuchsia-dark);
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.8fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .visual-card,
+    .side-panel {
+      background: rgba(255, 253, 251, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      box-shadow: 0 14px 40px rgba(100, 80, 70, 0.12);
+    }
+
+    .visual-card {
+      padding: 16px;
+    }
+
+    .visual-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #eadfd6;
+    }
+
+    .main-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      z-index: 1;
+    }
+
+    .zone {
+      position: absolute;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    .zone:focus-visible {
+      outline: 2px dashed var(--yellow);
+      outline-offset: 2px;
+    }
+
+    .marker {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border: 2px dashed var(--yellow);
+      border-radius: 999px;
+      background: rgba(245, 217, 10, 0.14);
+      box-shadow: 0 0 0 4px rgba(245, 217, 10, 0.14);
+      transform: translate(-50%, -50%);
+      z-index: 7;
+      pointer-events: none;
+      display: none;
+    }
+
+    .marker.active {
+      display: block;
+      animation: wiggle 360ms ease-in-out;
+    }
+
+    @keyframes wiggle {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      25% { transform: translate(calc(-50% + 2px), calc(-50% - 1px)) scale(1.08); }
+      50% { transform: translate(calc(-50% - 2px), calc(-50% + 1px)) scale(1.08); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .component-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .mini-card {
+      border: 1px dashed rgba(166, 77, 121, 0.45);
+      background: #fff;
+      border-radius: 16px;
+      padding: 10px;
+      min-height: 86px;
+      cursor: pointer;
+      text-align: left;
+      transition: 0.18s ease;
+    }
+
+    .mini-card.active,
+    .mini-card:hover {
+      border-color: var(--yellow);
+      background: #FFFBEA;
+      transform: translateY(-2px);
+    }
+
+    .num {
+      display: inline-flex;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--fuchsia);
+      color: white;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .term {
+      font-weight: 800;
+      color: var(--fuchsia-dark);
+      font-size: 14px;
+    }
+
+    .ipa {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .ru {
+      font-size: 12px;
+      color: #574B45;
+      margin-top: 3px;
+    }
+
+    .side-panel {
+      padding: 16px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+
+    .side-title {
+      margin: 0 0 12px;
+      color: var(--fuchsia-dark);
+      font-size: 22px;
+    }
+
+    .term-card {
+      border: 1px solid var(--border);
+      background: #fffafc;
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .term-card.active,
+    .term-card:hover {
+      border-color: var(--yellow);
+      background: #FFFBEA;
+      box-shadow: 0 8px 22px rgba(245, 217, 10, 0.14);
+    }
+
+    .sentence {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #4F4641;
+      line-height: 1.35;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    button.action {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--fuchsia-dark);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .progress {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #FCF7F9;
+      border: 1px solid var(--border);
+      color: var(--fuchsia-dark);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .side-panel {
+        max-height: none;
+      }
+
+      .component-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header>
+      <h1>Technical English Assembly Puzzle</h1>
+      <div class="subtitle">
+        Visual Technical English • British pronunciation • Click a component to hear the term
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="visual-card">
+        <div class="visual-frame" id="visualFrame">
+          <img
+            class="main-img"
+            src="./assets/original-assembly.png.png"
+            alt="Technical assembly puzzle visual"
+            id="mainImage"
+          />
+
+          <div class="marker" id="marker"></div>
+        </div>
+
+        <div class="component-strip" id="componentStrip"></div>
+
+        <div class="progress" id="progress">
+          Progress: 0 / 10 activated
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <h2 class="side-title">Component cards</h2>
+        <div id="cards"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const components = [
+      {
+        id: "cap",
+        n: 1,
+        term: "Cap",
+        ipa: "/kæp/",
+        ru: "колпачок",
+        sentence: "Insert the cap into the collet.",
+        sentenceRu: "Вставьте колпачок в цангу.",
+        marker: { x: 18, y: 72 },
+        zone: { x: 10, y: 64, w: 16, h: 16 }
+      },
+      {
+        id: "washer",
+        n: 2,
+        term: "Washer",
+        ipa: "/ˈwɒʃə/",
+        ru: "шайба",
+        sentence: "Place the washer under the cap.",
+        sentenceRu: "Установите шайбу под колпачок.",
+        marker: { x: 28, y: 72 },
+        zone: { x: 22, y: 64, w: 14, h: 16 }
+      },
+      {
+        id: "stud-bolt",
+        n: 3,
+        term: "Stud-bolt",
+        ipa: "/stʌd bəʊlt/",
+        ru: "болт-шпилька",
+        sentence: "Insert the stud-bolt through the panel.",
+        sentenceRu: "Вставьте болт-шпильку через панель.",
+        marker: { x: 48, y: 52 },
+        zone: { x: 42, y: 35, w: 12, h: 32 }
+      },
+      {
+        id: "panel",
+        n: 4,
+        term: "Panel",
+        ipa: "/ˈpænəl/",
+        ru: "панель",
+        sentence: "The panel has a hole.",
+        sentenceRu: "В панели есть отверстие.",
+        marker: { x: 66, y: 42 },
+        zone: { x: 55, y: 28, w: 30, h: 22 }
+      },
+      {
+        id: "hole",
+        n: 5,
+        term: "Hole",
+        ipa: "/həʊl/",
+        ru: "отверстие",
+        sentence: "There is a hole in the panel.",
+        sentenceRu: "В панели есть отверстие.",
+        marker: { x: 66, y: 58 },
+        zone: { x: 61, y: 53, w: 10, h: 10 }
+      },
+      {
+        id: "thread",
+        n: 6,
+        term: "Thread",
+        ipa: "/θred/",
+        ru: "резьба",
+        sentence: "The stud-bolt has a thread.",
+        sentenceRu: "У болта-шпильки есть резьба.",
+        marker: { x: 48, y: 46 },
+        zone: { x: 45, y: 38, w: 8, h: 20 }
+      },
+      {
+        id: "hex-recess",
+        n: 7,
+        term: "Hex recess",
+        ipa: "/hex rɪˈses/",
+        ru: "шестигранное углубление",
+        sentence: "The tool fits into the hex recess.",
+        sentenceRu: "Инструмент входит в шестигранное углубление.",
+        marker: { x: 48, y: 28 },
+        zone: { x: 43, y: 21, w: 12, h: 12 }
+      },
+      {
+        id: "retaining-cap",
+        n: 8,
+        term: "Retaining cap",
+        ipa: "/rɪˈteɪnɪŋ kæp/",
+        ru: "стопорный колпачок",
+        sentence: "Insert the retaining cap.",
+        sentenceRu: "Вставьте стопорный колпачок.",
+        marker: { x: 52, y: 73 },
+        zone: { x: 47, y: 66, w: 12, h: 14 }
+      },
+      {
+        id: "retaining-washer",
+        n: 9,
+        term: "Retaining washer",
+        ipa: "/rɪˈteɪnɪŋ ˈwɒʃə/",
+        ru: "стопорная шайба",
+        sentence: "The retaining washer holds the cap.",
+        sentenceRu: "Стопорная шайба удерживает колпачок.",
+        marker: { x: 58, y: 73 },
+        zone: { x: 53, y: 66, w: 12, h: 14 }
+      },
+      {
+        id: "section-view",
+        n: 10,
+        term: "Section view",
+        ipa: "/ˈsekʃən vjuː/",
+        ru: "вид в разрезе",
+        sentence: "The section view shows how the parts fit together.",
+        sentenceRu: "Вид в разрезе показывает, как детали соединяются.",
+        marker: { x: 37, y: 43 },
+        zone: { x: 30, y: 32, w: 16, h: 22 }
+      }
+    ];
+
+    const activated = new Set();
+    const clickCounts = {};
+    let activeId = null;
+
+    const frame = document.getElementById("visualFrame");
+    const marker = document.getElementById("marker");
+    const strip = document.getElementById("componentStrip");
+    const cards = document.getElementById("cards");
+    const progress = document.getElementById("progress");
+
+    function getNextRate(id) {
+      clickCounts[id] = (clickCounts[id] || 0) + 1;
+      return clickCounts[id] % 2 === 0 ? 0.85 : 1.0;
+    }
+
+    function speakBritish(text, id) {
+      if (!text || !window.speechSynthesis) return;
+
+      window.speechSynthesis.cancel();
+
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "en-GB";
+      u.rate = getNextRate(id);
+      u.pitch = 1;
+      u.volume = 1;
+
+      const voices = window.speechSynthesis.getVoices();
+      const british =
+        voices.find(v => v.lang === "en-GB" && /Sonia|Serena|Daniel|Kate|Google UK/i.test(v.name)) ||
+        voices.find(v => v.lang === "en-GB") ||
+        voices.find(v => v.lang && v.lang.startsWith("en")) ||
+        null;
+
+      if (british) u.voice = british;
+
+      window.speechSynthesis.speak(u);
+    }
+
+    window.speechSynthesis?.getVoices();
+    if (window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+
+    function render() {
+      components.forEach(c => {
+        const zone = document.createElement("button");
+        zone.className = "zone";
+        zone.setAttribute("aria-label", c.term);
+        zone.title = c.term;
+        zone.style.left = c.zone.x + "%";
+        zone.style.top = c.zone.y + "%";
+        zone.style.width = c.zone.w + "%";
+        zone.style.height = c.zone.h + "%";
+        zone.addEventListener("click", () => selectComponent(c.id));
+        frame.appendChild(zone);
+
+        const mini = document.createElement("button");
+        mini.className = "mini-card";
+        mini.dataset.id = c.id;
+        mini.innerHTML = `
+          <span class="num">${c.n}</span>
+          <div class="term">${c.term}</div>
+          <div class="ipa">${c.ipa}</div>
+          <div class="ru">${c.ru}</div>
+        `;
+        mini.addEventListener("click", () => selectComponent(c.id));
+        strip.appendChild(mini);
+
+        const card = document.createElement("article");
+        card.className = "term-card";
+        card.dataset.id = c.id;
+        card.innerHTML = `
+          <span class="num">${c.n}</span>
+          <div class="term">${c.term}</div>
+          <div class="ipa">${c.ipa}</div>
+          <div class="ru">${c.ru}</div>
+          <div class="sentence">${c.sentence}</div>
+          <div class="sentence">${c.sentenceRu}</div>
+          <div class="actions">
+            <button class="action" data-say-term="${c.id}">Listen</button>
+            <button class="action" data-say-sentence="${c.id}">Say sentence</button>
+          </div>
+        `;
+        card.addEventListener("click", (e) => {
+          if (e.target.matches("[data-say-term]")) {
+            e.stopPropagation();
+            speakBritish(c.term, c.id);
+            selectVisualOnly(c.id);
+            return;
+          }
+
+          if (e.target.matches("[data-say-sentence]")) {
+            e.stopPropagation();
+            speakBritish(c.sentence, c.id + "-sentence");
+            selectVisualOnly(c.id);
+            return;
+          }
+
+          selectComponent(c.id);
+        });
+
+        cards.appendChild(card);
+      });
+    }
+
+    function selectVisualOnly(id) {
+      const c = components.find(x => x.id === id);
+      if (!c) return;
+
+      activeId = id;
+      activated.add(id);
+
+      marker.style.left = c.marker.x + "%";
+      marker.style.top = c.marker.y + "%";
+      marker.classList.remove("active");
+      void marker.offsetWidth;
+      marker.classList.add("active");
+
+      document.querySelectorAll(".term-card, .mini-card").forEach(el => {
+        el.classList.toggle("active", el.dataset.id === id);
+      });
+
+      progress.textContent = `Progress: ${activated.size} / ${components.length} activated`;
+    }
+
+    function selectComponent(id) {
+      const c = components.find(x => x.id === id);
+      if (!c) return;
+
+      selectVisualOnly(id);
+      speakBritish(c.term, id);
+    }
+
+    render();
+  </script>
+</body>
+</html>
