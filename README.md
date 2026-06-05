@@ -9,7 +9,7 @@ built with plain HTML, CSS, and JavaScript.
 - `index.html` - main entry point for the page
 - `style.css` - premium responsive layout, cards, buttons, SVG states, and animations
 - `script.js` - `assemblyComponents` and `assemblySequence` data, generated PNG overlay slots, generated cards, pronunciation, relations, and sequence logic
-- `assets/original-assembly.png` - required original PNG master visual
+- `assets/original-assembly.png.png` - required original PNG master visual
 
 ## Run locally
 
@@ -28,7 +28,7 @@ You can also serve the folder with any static file server, but no npm,
 
 ## How to play
 
-1. Add the original uploaded PNG as `assets/original-assembly.png`.
+1. Add the original uploaded PNG as `assets/original-assembly.png.png`.
 2. Review the **Full kit** mode to see the original full image with interactive markers.
 3. Switch to **Build / puzzle mode**.
 4. Select a bottom component card and match it to the same-number dashed slot.

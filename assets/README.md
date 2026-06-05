@@ -1,5 +1,5 @@
 Place the original uploaded PNG at:
 
-`assets/original-assembly.png`
+`assets/original-assembly.png.png`
 
 The application uses that file as the master visual layer and draws the interactive puzzle overlay above it.
