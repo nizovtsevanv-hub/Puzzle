@@ -310,119 +310,118 @@
     </main>
   </div>
 
-  <script>
-    const components = [
-      {
-        id: "cap",
-        n: 1,
-        term: "Cap",
-        ipa: "/kæp/",
-        ru: "колпачок",
-        sentence: "Insert the cap into the collet.",
-        sentenceRu: "Вставьте колпачок в цангу.",
-        marker: { x: 18, y: 72 },
-        zone: { x: 10, y: 64, w: 16, h: 16 }
-      },
-      {
-        id: "washer",
-        n: 2,
-        term: "Washer",
-        ipa: "/ˈwɒʃə/",
-        ru: "шайба",
-        sentence: "Place the washer under the cap.",
-        sentenceRu: "Установите шайбу под колпачок.",
-        marker: { x: 28, y: 72 },
-        zone: { x: 22, y: 64, w: 14, h: 16 }
-      },
-      {
-        id: "stud-bolt",
-        n: 3,
-        term: "Stud-bolt",
-        ipa: "/stʌd bəʊlt/",
-        ru: "болт-шпилька",
-        sentence: "Insert the stud-bolt through the panel.",
-        sentenceRu: "Вставьте болт-шпильку через панель.",
-        marker: { x: 48, y: 52 },
-        zone: { x: 42, y: 35, w: 12, h: 32 }
-      },
-      {
-        id: "panel",
-        n: 4,
-        term: "Panel",
-        ipa: "/ˈpænəl/",
-        ru: "панель",
-        sentence: "The panel has a hole.",
-        sentenceRu: "В панели есть отверстие.",
-        marker: { x: 66, y: 42 },
-        zone: { x: 55, y: 28, w: 30, h: 22 }
-      },
-      {
-        id: "hole",
-        n: 5,
-        term: "Hole",
-        ipa: "/həʊl/",
-        ru: "отверстие",
-        sentence: "There is a hole in the panel.",
-        sentenceRu: "В панели есть отверстие.",
-        marker: { x: 66, y: 58 },
-        zone: { x: 61, y: 53, w: 10, h: 10 }
-      },
-      {
-        id: "thread",
-        n: 6,
-        term: "Thread",
-        ipa: "/θred/",
-        ru: "резьба",
-        sentence: "The stud-bolt has a thread.",
-        sentenceRu: "У болта-шпильки есть резьба.",
-        marker: { x: 48, y: 46 },
-        zone: { x: 45, y: 38, w: 8, h: 20 }
-      },
-      {
-        id: "hex-recess",
-        n: 7,
-        term: "Hex recess",
-        ipa: "/hex rɪˈses/",
-        ru: "шестигранное углубление",
-        sentence: "The tool fits into the hex recess.",
-        sentenceRu: "Инструмент входит в шестигранное углубление.",
-        marker: { x: 48, y: 28 },
-        zone: { x: 43, y: 21, w: 12, h: 12 }
-      },
-      {
-        id: "retaining-cap",
-        n: 8,
-        term: "Retaining cap",
-        ipa: "/rɪˈteɪnɪŋ kæp/",
-        ru: "стопорный колпачок",
-        sentence: "Insert the retaining cap.",
-        sentenceRu: "Вставьте стопорный колпачок.",
-        marker: { x: 52, y: 73 },
-        zone: { x: 47, y: 66, w: 12, h: 14 }
-      },
-      {
-        id: "retaining-washer",
-        n: 9,
-        term: "Retaining washer",
-        ipa: "/rɪˈteɪnɪŋ ˈwɒʃə/",
-        ru: "стопорная шайба",
-        sentence: "The retaining washer holds the cap.",
-        sentenceRu: "Стопорная шайба удерживает колпачок.",
-        marker: { x: 58, y: 73 },
-        zone: { x: 53, y: 66, w: 12, h: 14 }
-      },
-      {
-        id: "section-view",
-        n: 10,
-        term: "Section view",
-        ipa: "/ˈsekʃən vjuː/",
-        ru: "вид в разрезе",
-        sentence: "The section view shows how the parts fit together.",
-        sentenceRu: "Вид в разрезе показывает, как детали соединяются.",
-        marker: { x: 37, y: 43 },
-        zone: { x: 30, y: 32, w: 16, h: 22 }
-      }
-    ];
+  <script>const components = [
+  {
+    id: "stud-bolt",
+    n: 1,
+    term: "Stud-bolt",
+    ipa: "/stʌd bəʊlt/",
+    ru: "болт-шпилька",
+    sentence: "This is a stud-bolt.",
+    sentenceRu: "Это болт-шпилька.",
+    marker: { x: 13, y: 73 },
+    zone: { x: 5, y: 66, w: 18, h: 14 }
+  },
+  {
+    id: "hex-recess",
+    n: 2,
+    term: "Hex recess",
+    ipa: "/hex rɪˈses/",
+    ru: "шестигранное углубление",
+    sentence: "There is a hex recess.",
+    sentenceRu: "Есть шестигранное углубление.",
+    marker: { x: 24, y: 73 },
+    zone: { x: 19, y: 66, w: 12, h: 14 }
+  },
+  {
+    id: "thread",
+    n: 3,
+    term: "Thread",
+    ipa: "/θred/",
+    ru: "резьба",
+    sentence: "The stud-bolt has a thread.",
+    sentenceRu: "У болта-шпильки есть резьба.",
+    marker: { x: 36, y: 73 },
+    zone: { x: 31, y: 66, w: 12, h: 14 }
+  },
+  {
+    id: "diameter",
+    n: 4,
+    term: "Diameter",
+    ipa: "/daɪˈæmɪtə/",
+    ru: "диаметр",
+    sentence: "The drawing specifies the diameter.",
+    sentenceRu: "Чертёж задаёт диаметр.",
+    marker: { x: 47, y: 73 },
+    zone: { x: 43, y: 66, w: 10, h: 14 }
+  },
+  {
+    id: "depth",
+    n: 5,
+    term: "Depth",
+    ipa: "/depθ/",
+    ru: "глубина",
+    sentence: "The drawing specifies the depth.",
+    sentenceRu: "Чертёж задаёт глубину.",
+    marker: { x: 55, y: 73 },
+    zone: { x: 52, y: 66, w: 8, h: 14 }
+  },
+  {
+    id: "retaining-cap",
+    n: 6,
+    term: "Retaining cap",
+    ipa: "/rɪˈteɪnɪŋ kæp/",
+    ru: "стопорный колпачок",
+    sentence: "This is a retaining cap.",
+    sentenceRu: "Это стопорный колпачок.",
+    marker: { x: 63, y: 73 },
+    zone: { x: 59, y: 66, w: 10, h: 14 }
+  },
+  {
+    id: "retaining-washer",
+    n: 7,
+    term: "Retaining washer",
+    ipa: "/rɪˈteɪnɪŋ ˈwɒʃə/",
+    ru: "стопорная шайба",
+    sentence: "This is a retaining washer.",
+    sentenceRu: "Это стопорная шайба.",
+    marker: { x: 72, y: 73 },
+    zone: { x: 68, y: 66, w: 10, h: 14 }
+  },
+  {
+    id: "panel",
+    n: 8,
+    term: "Panel",
+    ipa: "/ˈpænəl/",
+    ru: "панель",
+    sentence: "This is a panel.",
+    sentenceRu: "Это панель.",
+    marker: { x: 81, y: 73 },
+    zone: { x: 76, y: 66, w: 10, h: 14 }
+  },
+  {
+    id: "hole",
+    n: 9,
+    term: "Hole",
+    ipa: "/həʊl/",
+    ru: "отверстие",
+    sentence: "There is a hole in the panel.",
+    sentenceRu: "В панели есть отверстие.",
+    marker: { x: 89, y: 73 },
+    zone: { x: 85, y: 66, w: 9, h: 14 }
+  },
+  {
+    id: "section-view",
+    n: 10,
+    term: "Section view",
+    ipa: "/ˈsekʃən vjuː/",
+    ru: "вид в разрезе",
+    sentence: "This is a section view.",
+    sentenceRu: "Это вид в разрезе.",
+    marker: { x: 96, y: 73 },
+    zone: { x: 92, y: 66, w: 8, h: 14 }
+  }
+];
 
     const activated = new Set();
     const clickCounts = {};
